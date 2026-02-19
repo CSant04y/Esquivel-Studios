@@ -19,6 +19,7 @@
 <body>
     <!-- Navigation -->
     <nav>
+        <button class="menu-toggle" aria-label="Toggle menu">☰</button>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
@@ -304,6 +305,7 @@
 
         // Wait for page to load before running lightbox code
         document.addEventListener('DOMContentLoaded', function () {
+        
 
             // Portfolio Lightbox
             const lightboxGalleryItems = document.querySelectorAll('.gallery-item');
@@ -380,6 +382,23 @@
                     }
                 }
             });
+
+            // Mobile menu toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('nav ul');
+
+if (menuToggle) {
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+    
+    // Close menu when clicking a link
+    document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', function() {
+            navMenu.classList.remove('active');
+        });
+    });
+}
 
         }); // End of DOMContentLoaded
     </script>
