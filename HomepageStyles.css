@@ -258,6 +258,13 @@ h3 {
 	transform: scale(1);
 }
 
+.gallery-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
 /* About Section */
 .about {
 	background-color: var(--secondary);
@@ -272,10 +279,13 @@ h3 {
 
 .about p {
 	font-size: var(--text-base);
-	line-height: var(--leading-relaxed);
+	line-height: 2;
 	text-align: center;
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 0 auto 1.5rem auto;
+}
+.about p:last-child {
+	margin-bottom: 0; /* Remove margin from last paragraph */
 }
 
 /* Booking Section */
@@ -395,117 +405,167 @@ footer {
 	padding: 2rem;
 }
 
-
-/* Lightbox */
+/* Premium Lightbox */
 .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    padding-top: 50px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(5px);
-    animation: fadeIn 0.3s ease;
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background: rgba(0, 0, 0, 0.96);
+	backdrop-filter: blur(20px);
+	animation: fadeIn 0.4s ease;
 }
 
 .lightbox-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 1200px;
-    max-height: 80vh;
-    object-fit: contain;
-    animation: zoomIn 0.3s ease;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: auto;
+	max-width: 90vw;
+	max-height: 80vh;
+	object-fit: contain;
+	animation: zoomIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+	border-radius: 8px;
 }
 
 .lightbox-close {
-    position: absolute;
-    top: 30px;
-    right: 50px;
-    color: var(--primary);
-    font-size: 50px;
-    font-weight: var(--weight-bold);
-    cursor: pointer;
-    transition: color 0.3s;
-    z-index: 10000;
+	position: absolute;
+	top: 40px;
+	right: 60px;
+	color: var(--primary);
+	font-size: 45px;
+	font-weight: var(--weight-light);
+	cursor: pointer;
+	transition: all 0.3s ease;
+	z-index: 10000;
+	background: rgba(0, 0, 0, 0.4);
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(10px);
 }
 
 .lightbox-close:hover {
-    color: var(--accent);
+	background: var(--accent);
+	transform: rotate(90deg);
+	color: white;
 }
 
 .lightbox-prev,
 .lightbox-next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: auto;
-    padding: 16px;
-    color: var(--primary);
-    font-weight: var(--weight-bold);
-    font-size: 40px;
-    transition: 0.3s;
-    user-select: none;
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 60px;
+	height: 60px;
+	padding: 0;
+	color: var(--primary);
+	font-weight: var(--weight-bold);
+	font-size: 30px;
+	transition: all 0.3s ease;
+	user-select: none;
+	background: rgba(0, 0, 0, 0.4);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	backdrop-filter: blur(10px);
 }
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
-    color: var(--accent);
-    background-color: rgba(0, 0, 0, 0.5);
+	background: var(--accent);
+	transform: translateY(-50%) scale(1.1);
+	box-shadow: 0 5px 20px rgba(217, 105, 65, 0.4);
 }
 
 .lightbox-prev {
-    left: 20px;
+	left: 40px;
 }
 
 .lightbox-next {
-    right: 20px;
+	right: 40px;
 }
 
 .lightbox-caption {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-    text-align: center;
-    color: var(--primary);
-    padding: 20px 0;
-    font-size: var(--text-base);
+	position: absolute;
+	bottom: 40px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: auto;
+	max-width: 700px;
+	text-align: center;
+	color: var(--primary);
+	padding: 12px 30px;
+	font-size: var(--text-base);
+	font-family: var(--font-heading);
+	letter-spacing: var(--spacing-normal);
+	background: rgba(0, 0, 0, 0.6);
+	border-radius: 25px;
+	backdrop-filter: blur(10px);
+}
+.lightbox-counter {
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: var(--primary);
+	font-size: var(--text-xs);
+	background: rgba(0, 0, 0, 0.6);
+	padding: 6px 16px;
+	border-radius: 20px;
+	backdrop-filter: blur(10px);
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+	from {
+		opacity: 0;
+		backdrop-filter: blur(0px);
+	}
+	to {
+		opacity: 1;
+		backdrop-filter: blur(20px);
+	}
 }
 
 @keyframes zoomIn {
-    from { transform: scale(0.8); }
-    to { transform: scale(1); }
+	from {
+		transform: scale(0.7);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
 }
-
 /* Make gallery items clickable */
 .gallery-item {
-    cursor: pointer;
-    position: relative;
+	cursor: pointer;
+	position: relative;
 }
 
 .gallery-item:hover::after {
-    content: "Click to view";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: var(--primary);
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: var(--text-sm);
-    pointer-events: none;
+	content: "Click to view";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--primary);
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: var(--text-sm);
+	pointer-events: none;
 }
 
 /* Responsive */

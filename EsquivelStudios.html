@@ -90,12 +90,24 @@
     <section id="portfolio" class="fade-in-section">
         <h2>Portfolio</h2>
         <div class="gallery">
-            <div class="gallery-item">Portrait 1</div>
-            <div class="gallery-item">Portrait 2</div>
-            <div class="gallery-item">Candid 1</div>
-            <div class="gallery-item">Portrait 3</div>
-            <div class="gallery-item">Candid 2</div>
-            <div class="gallery-item">Portrait 4</div>
+            <div class="gallery-item" data-full="Images/Full/portrait-1.jpg">
+                <img src="Images/Thumbnails/portrait-1.jpg" alt="Fall Couples Session at the Park">
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-2.jpg">
+                <img src="Images/Thumbnails/portrait-2.jpg" alt="Natural Light Portrait">
+            </div>
+            <div class="gallery-item" data-full="Images/Full/candid-1.jpg">
+                <img src="Images/Thumbnails/candid-1.jpg" alt="Best Friends Session">
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-3.jpg">
+                <img src="Images/Thumbnails/portrait-3.jpg" alt="Dreamy Senior Session">
+            </div>
+            <div class="gallery-item" data-full="Images/Full/candid-2.jpg">
+                <img src="Images/Thumbnails/candid-2.jpg" alt="Lifestyle Photography">
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-4.jpg">
+                <img src="Images/Thumbnails/portrait-4.jpg" alt="Golden Hour Engagement">
+            </div>
         </div>
     </section>
 
@@ -103,14 +115,17 @@
     <section id="about" class="about fade-in-section">
         <h2>About Carlos</h2>
         <p>
-            Welcome to Esquivel Studios. I'm Carlos, a portrait and candid photographer based in Tulsa.
-            I believe in capturing genuine moments and authentic expressions that tell your unique story.
-            Whether it's a formal portrait session or candid moments that unfold naturally, my goal is
-            to create images that you'll treasure for years to come. Let's work together to create
-            something beautiful.
+            Photography has been part of my life since I was thirteen, the moment I got my first cell phone with a
+            camera. I'd pose my siblings, my family members, even my dogs—experimenting with angles, lighting, and
+            capturing genuine moments. That early curiosity grew into a true passion for portrait photography.
+        </p>
+        <p>
+            What I love most is being part of someone's special moment. Whether it's a senior milestone, a couple's
+            engagement, or a family celebrating together, I'm there to capture memories you'll cherish for years to
+            come. My approach is simple: get to know you, understand what you're celebrating, and create images that
+            feel authentic to who you are.
         </p>
     </section>
-
     <!-- Booking Section -->
     <section id="booking" class="booking fade-in-section">
         <h2>Book Your Session</h2>
@@ -168,14 +183,15 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact fade-in-section">
+    <section id="contact" class="contact">
         <h2>Get In Touch</h2>
         <div class="contact-info">
             <div class="contact-item">
-                📧 esquivelstudios@email.com
+                📧 <a href="mailto:contact@carlosesquivelstudios.com"
+                    style="color: inherit; text-decoration: none;">contact@carlosesquivelstudios.com</a>
             </div>
             <div class="contact-item">
-                📱 (918) XXX-XXXX
+                📱 <a href="tel:+19182808592" style="color: inherit; text-decoration: none;">(918) 280-8592</a>
             </div>
             <div class="contact-item">
                 📍 Tulsa, Oklahoma
@@ -188,6 +204,15 @@
         <p>&copy; 2025 Esquivel Studios. All rights reserved.</p>
     </footer>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev">&#10094;</span>
+        <span class="lightbox-next">&#10095;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-caption"></div>
+        <div class="lightbox-counter"></div>
+    </div>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -277,81 +302,89 @@
         });
 
 
-        // Portfolio Lightbox
-const lightboxGalleryItems = document.querySelectorAll('.gallery-item');
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxCaption = document.querySelector('.lightbox-caption');
-const closeBtn = document.querySelector('.lightbox-close');
-const prevBtn = document.querySelector('.lightbox-prev');
-const nextBtn = document.querySelector('.lightbox-next');
+        // Wait for page to load before running lightbox code
+        document.addEventListener('DOMContentLoaded', function () {
 
-let currentIndex = 0;
+            // Portfolio Lightbox
+            const lightboxGalleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.querySelector('.lightbox-caption');
+            const closeBtn = document.querySelector('.lightbox-close');
+            const prevBtn = document.querySelector('.lightbox-prev');
+            const nextBtn = document.querySelector('.lightbox-next');
 
-// Open lightbox when gallery item is clicked
-lightboxGalleryItems.forEach((item, index) => {
-    item.addEventListener('click', function() {
-        currentIndex = index;
-        openLightbox(this);
-    });
-});
+            let currentIndex = 0;
 
-function openLightbox(element) {
-    lightbox.style.display = 'block';
-    // For now, we'll use a placeholder. Later you'll add actual image sources
-    lightboxImg.src = element.style.backgroundImage ? 
-        element.style.backgroundImage.slice(5, -2) : 
-        'https://via.placeholder.com/1200x800/E8E4DF/193C40?text=Portfolio+Image+' + (currentIndex + 1);
-    lightboxCaption.textContent = element.textContent || 'Portfolio Image ' + (currentIndex + 1);
-}
+            // Only run if lightbox exists
+            if (!lightbox || !closeBtn) {
+                console.error('Lightbox elements not found!');
+                return;
+            }
 
-// Close lightbox
-closeBtn.addEventListener('click', function() {
-    lightbox.style.display = 'none';
-});
+            // Open lightbox when gallery item is clicked
+            lightboxGalleryItems.forEach((item, index) => {
+                item.addEventListener('click', function () {
+                    currentIndex = index;
+                    openLightbox(this);
+                });
+            });
 
-// Close on background click
-lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-        lightbox.style.display = 'none';
-    }
-});
+            function openLightbox(element) {
+                lightbox.style.display = 'block';
+                const fullImageSrc = element.getAttribute('data-full');
+                const altText = element.querySelector('img').alt;
+                lightboxImg.src = fullImageSrc;
+                lightboxCaption.textContent = altText;
 
-// Previous image
-prevBtn.addEventListener('click', function() {
-    currentIndex = (currentIndex - 1 + lightboxGalleryItems.length) % lightboxGalleryItems.length;
-    openLightbox(lightboxGalleryItems[currentIndex]);
-});
+                // Add counter
+                const counter = document.querySelector('.lightbox-counter');
+                if (counter) {
+                    counter.textContent = `${currentIndex + 1} / ${lightboxGalleryItems.length}`;
+                }
+            }
 
-// Next image
-nextBtn.addEventListener('click', function() {
-    currentIndex = (currentIndex + 1) % lightboxGalleryItems.length;
-    openLightbox(lightboxGalleryItems[currentIndex]);
-});
+            // Close lightbox
+            closeBtn.addEventListener('click', function () {
+                lightbox.style.display = 'none';
+            });
 
-// Keyboard navigation
-document.addEventListener('keydown', function(e) {
-    if (lightbox.style.display === 'block') {
-        if (e.key === 'Escape') {
-            lightbox.style.display = 'none';
-        } else if (e.key === 'ArrowLeft') {
-            prevBtn.click();
-        } else if (e.key === 'ArrowRight') {
-            nextBtn.click();
-        }
-    }
-});
+            // Close on background click
+            lightbox.addEventListener('click', function (e) {
+                if (e.target === lightbox) {
+                    lightbox.style.display = 'none';
+                }
+            });
 
+            // Previous image
+            prevBtn.addEventListener('click', function () {
+                currentIndex = (currentIndex - 1 + lightboxGalleryItems.length) % lightboxGalleryItems.length;
+                openLightbox(lightboxGalleryItems[currentIndex]);
+            });
+
+            // Next image
+            nextBtn.addEventListener('click', function () {
+                currentIndex = (currentIndex + 1) % lightboxGalleryItems.length;
+                openLightbox(lightboxGalleryItems[currentIndex]);
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function (e) {
+                if (lightbox.style.display === 'block') {
+                    if (e.key === 'Escape') {
+                        lightbox.style.display = 'none';
+                    } else if (e.key === 'ArrowLeft') {
+                        prevBtn.click();
+                    } else if (e.key === 'ArrowRight') {
+                        nextBtn.click();
+                    }
+                }
+            });
+
+        }); // End of DOMContentLoaded
     </script>
 
-    <!-- Lightbox Modal -->
-    <div id="lightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <span class="lightbox-prev">&#10094;</span>
-        <span class="lightbox-next">&#10095;</span>
-        <img class="lightbox-content" id="lightbox-img">
-        <div class="lightbox-caption"></div>
-    </div>
+
 </body>
 
 </html>
