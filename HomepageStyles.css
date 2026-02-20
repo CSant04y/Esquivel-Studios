@@ -1,3 +1,7 @@
+/* ============================================
+   GLOBAL STYLES & CSS VARIABLES
+   ============================================ */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -5,27 +9,20 @@
 }
 
 :root {
-	/* Verde Color Palette */
+	/* Color Palette */
 	--primary: #f5f3f0; /* Cream/Light neutral for backgrounds */
-	--secondary: #193c40; /* Deep Teal (Verde-1) - main brand color */
-	--accent: #d96941; /* Terracotta (Verde-4) - call-to-action */
-	--dark: #214001; /* Deep Forest Green (Verde-3) - text/footer */
-	--medium-green: #2e5902; /* Rich Green (Verde-2) - sections */
-	--accent-dark: #a62b1f; /* Deep Terracotta (Verde-5) - hover states */
+	--secondary: #193c40; /* Deep Teal - main brand color */
+	--accent: #d96941; /* Terracotta - call-to-action */
+	--dark: #214001; /* Deep Forest Green - text/footer */
+	--medium-green: #2e5902; /* Rich Green - sections */
+	--accent-dark: #a62b1f; /* Deep Terracotta - hover states */
+	--light-bg: #e8e4df; /* Light background */
 
-	/* Optional: Add a light background since palette is dark */
-	--light-bg: #e8e4df;
-
-	/* Typograhy Variables */
+	/* Typography */
 	--font-heading: "Playfair Display", serif;
 	--font-body: "Lato", sans-serif;
 
-	/* Glassmorphism Effects */
-	--glass-bg: rgba(245, 243, 240, 0.7);
-	--glass-blur: 10px;
-	--glass-border: rgba(255, 255, 255, 0.3);
-
-	/* Font Weights  */
+	/* Font Weights */
 	--weight-light: 300;
 	--weight-regular: 400;
 	--weight-semibold: 600;
@@ -41,7 +38,7 @@
 	--text-3xl: 3rem;
 	--text-4xl: 4rem;
 
-	/* Letter Spacing  */
+	/* Letter Spacing */
 	--spacing-tight: 0.3px;
 	--spacing-normal: 1px;
 	--spacing-wide: 2px;
@@ -50,31 +47,56 @@
 	/* Line Heights */
 	--leading-normal: 1.6;
 	--leading-relaxed: 1.8;
-}
 
-html,
-body {
-	max-width: 100%;
+	/* Glassmorphism Effects */
+	--glass-bg: rgba(245, 243, 240, 0.7);
+	--glass-blur: 10px;
+	--glass-border: rgba(255, 255, 255, 0.3);
+}
+html {
 	overflow-x: hidden;
+	overflow-y: auto; /* Allow vertical scrolling */
+	height: auto;
+	min-height: 100%;
 }
-
 body {
+	display: block;
+	position: relative;
 	font-family: var(--font-body);
 	line-height: var(--leading-relaxed);
 	color: var(--dark);
 	background-color: var(--primary);
 	letter-spacing: var(--spacing-tight);
 	font-weight: var(--weight-regular);
+	overflow-x: hidden;
+	overflow-y: auto; /* Allow vertical scrolling */
+	height: auto;
+	min-height: 100vh;
 }
 
-/* Navigation */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: auto !important;
+	min-height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: relative;
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
 nav {
 	position: fixed;
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
-	max-width: 100vw; /* Don't exceed viewport width */
+	max-width: 100vw;
 	background: var(--glass-bg);
 	backdrop-filter: blur(var(--glass-blur)) saturate(180%);
 	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
@@ -83,7 +105,8 @@ nav {
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 	z-index: 1000;
 	transition: all 0.3s ease;
-	box-sizing: border-box; /* Include padding in width calculation */
+	box-sizing: border-box;
+	margin: 0;
 }
 
 nav ul {
@@ -91,6 +114,8 @@ nav ul {
 	display: flex;
 	justify-content: center;
 	gap: 2rem;
+	margin: 0;
+	padding: 0;
 }
 
 nav a {
@@ -105,14 +130,15 @@ nav a:hover {
 	color: var(--accent);
 }
 
-/* Hide hamburger on desktop */
-.menu-toggle {
-	display: none;
-}
+/* ============================================
+   HERO SECTION
+   ============================================ */
 
-/* Hero Section */
 .hero {
 	height: 100vh;
+	width: 100%; /* Full width */
+	max-width: 100%; /* No max-width restriction */
+	min-height: 600px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -126,6 +152,7 @@ nav a:hover {
 	color: var(--primary);
 	text-align: center;
 	padding: 2rem;
+	margin: 0; /* No margin */
 }
 
 .hero h1 {
@@ -165,9 +192,7 @@ nav a:hover {
 	background-color: var(--light-bg);
 }
 
-/*Hero Section SVG Animation*/
-
-/* Google chrome */
+/* Hero SVG Animation */
 @-webkit-keyframes svg-text-anim {
 	40% {
 		stroke-dashoffset: 0;
@@ -182,7 +207,7 @@ nav a:hover {
 		fill: var(--primary);
 	}
 }
-/* Most browsers */
+
 @keyframes svg-text-anim {
 	40% {
 		stroke-dashoffset: 0;
@@ -198,11 +223,30 @@ nav a:hover {
 	}
 }
 
-/* Section Styling */
+#logo-svg {
+	width: 100%;
+	max-width: 800px;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+
+/* ============================================
+   TYPOGRAPHY & BASE STYLES
+   ============================================ */
+
 section {
 	padding: 5rem 2rem;
 	max-width: 1200px;
 	margin: 0 auto;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--font-heading);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-normal);
 }
 
 h2 {
@@ -214,15 +258,10 @@ h2 {
 	letter-spacing: var(--spacing-wide);
 }
 
-h1,
-h2,
-h3 {
-	font-family: var(--font-heading);
-	font-weight: var(--weight-semibold);
-	letter-spacing: var(--spacing-normal);
-}
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
-/*  Fade in AnimationSection */
 .fade-in-section {
 	opacity: 0;
 	transform: translateY(50px);
@@ -236,12 +275,58 @@ h3 {
 	transform: translateY(0);
 }
 
-/* Portfolio Gallery */
+/* Remove overflow restrictions that hide footer */
+.fade-in-section,
+.fade-in-section.is-visible,
+section {
+	overflow: visible !important;
+}
+
+.booking,
+.contact {
+	overflow: visible !important;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		backdrop-filter: blur(0px);
+	}
+	to {
+		opacity: 1;
+		backdrop-filter: blur(20px);
+	}
+}
+
+@keyframes zoomIn {
+	from {
+		transform: scale(0.7);
+		opacity: 0;
+	}
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+/* ============================================
+   PORTFOLIO GALLERY
+   ============================================ */
+
+#portfolio {
+	width: 100%;
+	max-width: 100%;
+	padding: 5rem 2rem;
+}
+
 .gallery {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	margin-top: 2rem;
+	max-width: 1400px; /* Wider max-width for gallery */
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .gallery-item {
@@ -253,24 +338,36 @@ h3 {
 	justify-content: center;
 	color: var(--secondary);
 	font-size: var(--text-base);
-	transition: transform 0.3s;
-}
-
-.gallery-item:hover {
-	transform: scale(1.05);
-}
-
-.gallery-item {
 	opacity: 0;
 	transform: scale(0.9);
-	transition:
-		opacity 0.75s ease,
-		transform 0.75s ease;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	position: relative;
 }
 
 .gallery-item.animate {
 	opacity: 1;
 	transform: scale(1);
+}
+
+.gallery-item:hover {
+	transform: scale(1.05);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+}
+
+.gallery-item:hover::after {
+	content: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--primary);
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 10px 20px;
+	border-radius: 5px;
+	font-size: var(--text-sm);
+	pointer-events: none;
 }
 
 .gallery-item img {
@@ -280,7 +377,10 @@ h3 {
 	border-radius: 10px;
 }
 
-/* About Section */
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+
 .about {
 	background-color: var(--secondary);
 	color: var(--primary);
@@ -299,11 +399,15 @@ h3 {
 	max-width: 800px;
 	margin: 0 auto 1.5rem auto;
 }
+
 .about p:last-child {
-	margin-bottom: 0; /* Remove margin from last paragraph */
+	margin-bottom: 0;
 }
 
-/* Booking Section */
+/* ============================================
+   BOOKING SECTION
+   ============================================ */
+
 .booking {
 	background-color: var(--primary);
 }
@@ -387,40 +491,137 @@ button[type="submit"]:hover {
 	text-align: center;
 }
 
-/* Contact Section */
+/* ============================================
+   CONTACT SECTION
+   ============================================ */
+
 .contact {
 	background-color: var(--accent);
 	color: var(--primary);
 	text-align: center;
 	border-radius: 15px;
-	padding: 3rem;
+	padding: 4rem 3rem;
 }
 
 .contact h2 {
 	color: var(--primary);
+	font-size: var(--text-4xl);
+	margin-bottom: 3rem;
 }
 
 .contact-info {
 	display: flex;
-	justify-content: center;
-	gap: 3rem;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
 	margin-top: 2rem;
-	flex-wrap: wrap;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .contact-item {
-	font-size: var(--text-base);
+	font-size: var(--text-lg);
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
 }
+.contact-item a {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+.contact-item a:hover {
+    opacity: 0.8;
+}
+/* ============================================
+   FOOTER
+   ============================================ */
 
-/* Footer */
+/* Ensure footer is always visible */
 footer {
 	background-color: var(--dark);
 	color: var(--primary);
 	text-align: center;
-	padding: 2rem;
+	padding: 3rem 2rem;
+	width: 100%;
+	position: relative;
+	clear: both;
+	display: block !important;
+	visibility: visible !important;
+	z-index: 10;
 }
 
-/* Premium Lightbox */
+
+/* Social Media Links */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent);
+    color: var(--primary);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--accent-dark);
+    transform: translateY(-3px);
+}
+
+.back-to-top:active {
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   LIGHTBOX (MODAL IMAGE VIEWER)
+   ============================================ */
+
 .lightbox {
 	display: none;
 	position: fixed;
@@ -529,6 +730,7 @@ footer {
 	border-radius: 25px;
 	backdrop-filter: blur(10px);
 }
+
 .lightbox-counter {
 	position: absolute;
 	top: 40px;
@@ -542,52 +744,41 @@ footer {
 	backdrop-filter: blur(10px);
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-		backdrop-filter: blur(0px);
-	}
-	to {
-		opacity: 1;
-		backdrop-filter: blur(20px);
-	}
-}
+/* ============================================
+   RESPONSIVE DESIGN (MOBILE)
+   ============================================ */
 
-@keyframes zoomIn {
-	from {
-		transform: scale(0.7);
-		opacity: 0;
-	}
-	to {
-		transform: scale(1);
-		opacity: 1;
-	}
-}
-/* Make gallery items clickable */
-.gallery-item {
-	cursor: pointer;
-	position: relative;
-}
-
-.gallery-item:hover::after {
-	content: "Click to view";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: var(--primary);
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: var(--text-sm);
-	pointer-events: none;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
+	html,
+	body {
+		height: auto !important;
+		min-height: 100% !important;
+		overflow-y: scroll !important;
+		-webkit-overflow-scrolling: touch;
+	}
+	/* Remove any fixed positioning that might constrain scroll */
+	body {
+		position: static;
+	}
+	/* Logo SVG */
+	#logo-svg {
+		width: 95%;
+		max-width: none;
+		height: auto;
+		margin: 0 auto;
+		padding: 0 0.5rem;
+	}
+
+	/* Hero Section */
+
+	.hero {
+		height: 100vh;
+		min-height: 100vh; /* Ensure it's at least full screen */
+	}
 	.hero h1 {
-		font-size: var(--text-xl);
-		margin-bottom: 1rem;
+		font-size: var(--text-2xl);
+		margin: 0 auto 1rem auto;
+		max-width: 90%;
 		font-weight: var(--weight-bold);
 		letter-spacing: var(--spacing-normal);
 	}
@@ -601,13 +792,22 @@ footer {
 		letter-spacing: var(--spacing-normal);
 	}
 
-	/* Hide default nav on mobile */
+	/* Ensure all sections can scroll */
+	section {
+		position: relative;
+	}
+
+	/* Navigation - Mobile */
 	nav {
-		padding: 1rem;
+		padding: 0;
+		background: transparent !important;
+		backdrop-filter: none !important;
+		border-bottom: none !important;
+		box-shadow: none !important;
 	}
 
 	nav ul {
-		display: none;
+		display: none; /* Hidden by default */
 		flex-direction: column;
 		gap: 0;
 		position: absolute;
@@ -616,11 +816,12 @@ footer {
 		right: 0;
 		width: 100%;
 		max-width: 100vw;
-		background: rgba(245, 243, 240, 0.98);
+		background: var(--glass-bg);
 		backdrop-filter: blur(var(--glass-blur));
 		padding: 1rem 0;
 		align-items: center;
 		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+		animation: slideDown 0.3s ease;
 	}
 
 	nav ul.active {
@@ -632,10 +833,15 @@ footer {
 		text-align: center;
 		padding: 1rem 0;
 		border-bottom: 1px solid rgba(25, 60, 64, 0.1);
+		transition: all 0.3s ease;
 	}
 
 	nav ul li:last-child {
 		border-bottom: none;
+	}
+	nav ul li:hover {
+		background-color: rgba(217, 105, 65, 0.1);
+		transform: scale(1.02);
 	}
 
 	nav a {
@@ -644,26 +850,66 @@ footer {
 		color: var(--secondary);
 		font-size: var(--text-base);
 		font-weight: var(--weight-regular);
+		padding: 0.5rem 1rem;
+	}
+	/* Underline animation on hover */
+	nav a::after {
+		display: none;
 	}
 
+	nav a:hover::after {
+		width: 100%;
+	}
+
+	nav a:hover {
+		color: var(--accent);
+		transform: translateY(-2px);
+	}
+
+	/* Active/Click state */
+	nav a:active {
+		transform: translateY(0);
+	}
+
+	/* Menu Toggle */
 	.menu-toggle {
-		display: block;
-		background: none;
-		border: none;
-		font-size: 1.8rem;
-		color: var(--secondary);
+		display: flex !important;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 50px;
+		height: 50px;
+		background: var(--accent) !important;
+		border: 2px solid var(--primary) !important;
 		cursor: pointer;
-		padding: 0.5rem;
-	}
-	.hero h1 {
-		font-size: var(--text-2xl); /* Using variable instead of 2rem */
-		letter-spacing: var(--spacing-normal);
-	}
-
-	.hero p {
-		font-size: var(--text-sm); /* Using variable */
+		padding: 10px !important;
+		position: fixed !important;
+		top: 1rem !important;
+		left: 1rem !important;
+		z-index: 9999 !important;
+		border-radius: 5px;
 	}
 
+	.menu-toggle:hover {
+		background: var(--accent-dark) !important;
+		transform: scale(1.05);
+	}
+
+	.menu-toggle:active {
+		transform: scale(0.95);
+	}
+
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Gallery - Mobile */
 	.gallery {
 		grid-template-columns: repeat(2, 1fr);
 		gap: 1rem;
@@ -673,7 +919,174 @@ footer {
 		height: 200px;
 	}
 
+	/* Booking - Mobile */
 	.booking-container {
 		grid-template-columns: 1fr;
 	}
+
+	/* Sections - Mobile */
+	section {
+		padding: 3rem 1rem;
+	}
+
+	.about {
+		padding: 2.5rem 1.5rem;
+		margin: 0 1rem;
+	}
+
+	.about h2 {
+		font-size: var(--text-2xl); /* Smaller heading on mobile */
+		margin-bottom: 1.5rem;
+	}
+
+	.about p {
+		font-size: 1rem; /* Slightly smaller */
+		line-height: 1.9; /* More breathing room */
+		text-align: left; /* Left-align for easier reading on mobile */
+		max-width: 100%;
+		margin: 0 0 1.5rem 0;
+		padding: 0;
+	}
+
+	.about p:last-child {
+		margin-bottom: 0;
+	}
+
+	.about,
+	.contact {
+		border-radius: 20px;
+		margin: 0 1rem;
+	}
+
+	.booking-form,
+	.calendar-section {
+		border-radius: 15px;
+	}
+
+	.contact {
+		padding: 3rem 2rem;
+		margin: 2rem 1rem;
+		border-radius: 20px;
+	}
+	.contact h2 {
+		font-size: var(--text-3xl);
+		margin-bottom: 2.5rem;
+	}
+	.contact-item a {
+		color: inherit;
+		text-decoration: none;
+		word-break: break-word;
+	}
+
+	.contact-info {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: center;
+		margin-top: 2rem;
+	}
+
+	.contact-item {
+		font-size: 1.125rem;
+		line-height: 1.6;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		width: 100%;
+	}
+
+	/* Lightbox mobile fixes */
+	.lightbox-content {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 90vw;
+		max-width: 90vw;
+		max-height: 70vh; /* More space for arrows */
+		object-fit: contain;
+	}
+
+	/* Navigation arrows - larger and more visible on mobile */
+	.lightbox-prev,
+	.lightbox-next {
+		width: 50px;
+		height: 50px;
+		font-size: 24px;
+		background: rgba(217, 105, 65, 0.9); /* More visible */
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.lightbox-prev {
+		left: 10px; /* Closer to edge */
+	}
+
+	.lightbox-next {
+		right: 10px; /* Closer to edge */
+	}
+
+	/* Close button - easier to tap */
+	.lightbox-close {
+		top: 20px;
+		right: 20px;
+		width: 50px;
+		height: 50px;
+		font-size: 35px;
+		background: rgba(217, 105, 65, 0.9);
+	}
+
+	/* Counter - adjust position */
+	.lightbox-counter {
+		top: 20px;
+		font-size: var(--text-sm);
+		padding: 8px 16px;
+	}
+
+	/* Caption - better positioning */
+	.lightbox-caption {
+		bottom: 20px;
+		max-width: 90%;
+		font-size: var(--text-sm);
+		padding: 10px 20px;
+	}
+
+	/* Ensure arrows are always visible */
+	.lightbox-prev,
+	.lightbox-next {
+		display: flex !important;
+		visibility: visible !important;
+		opacity: 1 !important;
+		z-index: 10001;
+	}
+
+	/* Add touch-friendly tap areas */
+	.lightbox-prev:active,
+	.lightbox-next:active,
+	.lightbox-close:active {
+		transform: scale(0.9);
+	}
+
+	/* Footer - Mobile */
+	footer {
+		padding: 2rem 1rem !important;
+		font-size: var(--text-sm);
+		margin-top: 2rem;
+	}
+}
+
+/* Ensure desktop nav is always visible */
+@media (min-width: 769px) {
+	.menu-toggle {
+		display: none !important;
+	}
+
+	nav ul {
+		display: flex !important;
+	}
+}
+
+.menu-toggle {
+	display: none;
 }
