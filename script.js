@@ -34,6 +34,7 @@ setTextAnimation(0.1, 3.5, 2, 'linear', '#ffffff', false);
 // ============================================
 const nav = document.querySelector('nav');
 const backToTopButton = document.getElementById('back-to-top');
+const heroSection = document.querySelector('.hero');
 
 window.addEventListener('scroll', function () {
     const scrolled = window.pageYOffset;
@@ -56,6 +57,16 @@ window.addEventListener('scroll', function () {
         } else {
             backToTopButton.classList.remove('visible');
         }
+    }
+
+    // Blob parallax — only while hero is in view
+    if (heroSection) {
+        const heroHeight = heroSection.offsetHeight;
+        const progress = Math.min(scrolled / heroHeight, 1);
+        heroSection.style.setProperty('--blob-a-y', `${progress * -280}px`);
+        heroSection.style.setProperty('--blob-a-x', `${progress * 220}px`);
+        heroSection.style.setProperty('--blob-b-y', `${progress * 220}px`);
+        heroSection.style.setProperty('--blob-b-x', `${progress * 280}px`);
     }
 });
 

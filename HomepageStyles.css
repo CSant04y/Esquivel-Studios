@@ -276,23 +276,79 @@ nav a:hover::after {
 
 .hero {
 	height: 100vh;
-	width: 100%; /* Full width */
-	max-width: 100%; /* No max-width restriction */
+	width: 100%;
+	max-width: 100%;
 	min-height: 600px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: linear-gradient(
-		135deg,
-		var(--secondary) 0%,
-		var(--medium-green) 50%,
-		var(--accent) 100%
-	);
 	color: var(--primary);
 	text-align: center;
 	padding: 2rem;
-	margin: 0; /* No margin */
+	margin: 0;
+	position: relative;
+	overflow: hidden;
+	isolation: isolate;
+	clip-path: inset(0);
+	background: var(--secondary);
+}
+
+/* Warm blob — terracotta & deep red */
+.hero::before {
+	content: '';
+	position: absolute;
+	width: 90%;
+	height: 90%;
+	top: calc(-25% + var(--blob-a-y, 0px));
+	left: calc(-25% + var(--blob-a-x, 0px));
+	background:
+		radial-gradient(ellipse 60% 55% at 35% 40%, #d96941 0%, transparent 70%),
+		radial-gradient(ellipse 50% 60% at 70% 65%, #a62b1f 0%, transparent 65%);
+	filter: blur(70px);
+	animation: blob-a 22s ease-in-out infinite alternate;
+	transform-origin: 75% 70%;
+	z-index: 0;
+	opacity: 0.85;
+}
+
+/* Cool blob — forest green & teal */
+.hero::after {
+	content: '';
+	position: absolute;
+	width: 90%;
+	height: 90%;
+	bottom: calc(-25% + var(--blob-b-y, 0px));
+	right: calc(-25% + var(--blob-b-x, 0px));
+	background:
+		radial-gradient(ellipse 65% 50% at 60% 55%, #2e5902 0%, transparent 70%),
+		radial-gradient(ellipse 55% 65% at 25% 35%, #193c40 0%, transparent 65%);
+	filter: blur(90px);
+	animation: blob-b 28s ease-in-out infinite alternate;
+	transform-origin: 25% 30%;
+	z-index: 0;
+	opacity: 0.9;
+}
+
+@keyframes blob-a {
+	0%   { transform: rotate(0deg)   scale(1);    }
+	33%  { transform: rotate(120deg) scale(1.15); }
+	66%  { transform: rotate(240deg) scale(0.95); }
+	100% { transform: rotate(360deg) scale(1.1);  }
+}
+
+@keyframes blob-b {
+	0%   { transform: rotate(0deg)    scale(1.1);  }
+	33%  { transform: rotate(-130deg) scale(0.95); }
+	66%  { transform: rotate(-250deg) scale(1.2);  }
+	100% { transform: rotate(-360deg) scale(1);    }
+}
+
+.hero-content {
+	position: relative;
+	z-index: 1;
+	will-change: transform, opacity;
+	transition: opacity 0.1s ease-out;
 }
 
 .hero h1 {
@@ -311,10 +367,6 @@ nav a:hover::after {
 	opacity: 0.9;
 }
 
-.hero-content {
-	will-change: transform, opacity;
-	transition: opacity 0.1s ease-out;
-}
 
 .cta-button {
 	background-color: var(--primary);
