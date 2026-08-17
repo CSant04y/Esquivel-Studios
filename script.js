@@ -11,23 +11,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ============================================
-//   SVG LOGO ANIMATION
-// ============================================
-function setTextAnimation(delay, duration, strokeWidth, timingFunction, strokeColor, repeat) {
-    const paths = document.querySelectorAll('path');
-    const mode = repeat ? 'infinite' : 'forwards';
-    paths.forEach((path, i) => {
-        const length = path.getTotalLength();
-        path.style['stroke-dashoffset'] = `${length}px`;
-        path.style['stroke-dasharray'] = `${length}px`;
-        path.style['stroke-width'] = `${strokeWidth}px`;
-        path.style['stroke'] = `${strokeColor}`;
-        path.style['animation'] = `${duration}s svg-text-anim ${mode} ${timingFunction}`;
-        path.style['animation-delay'] = `${i * delay}s`;
-    });
-}
-setTextAnimation(0.1, 3.5, 2, 'linear', '#ffffff', false);
 
 // ============================================
 //   SCROLL EFFECTS
@@ -95,10 +78,10 @@ document.querySelectorAll('.fade-in-section').forEach(el => appearOnScroll.obser
 const galleryObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-            setTimeout(() => entry.target.classList.add('animate'), index * 100);
+            setTimeout(() => entry.target.classList.add('animate'), Math.min(index * 80, 400));
         }
     });
-});
+}, { threshold: 0.05 });
 
 document.querySelectorAll('.gallery-item').forEach(item => galleryObserver.observe(item));
 
@@ -118,12 +101,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextBtn = document.querySelector('.lightbox-next');
     let currentIndex = 0;
 
-    function openLightbox(index) {
-        const item = galleryItems[index];
-        currentIndex = index;
+    // Only the currently-visible (non-filtered-out) items participate in the lightbox
+    function getVisibleItems() {
+        return Array.from(galleryItems).filter(item => !item.classList.contains('filtered-out'));
+    }
+
+    function openLightbox(item) {
+        const visibleItems = getVisibleItems();
+        currentIndex = visibleItems.indexOf(item);
         lightboxImg.src = item.getAttribute('data-full');
         lightboxCaption.textContent = item.querySelector('img').alt;
-        lightboxCounter.textContent = `${index + 1} / ${galleryItems.length}`;
+        lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
         lightbox.style.display = 'block';
     }
 
@@ -131,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
         lightbox.style.display = 'none';
     }
 
-    galleryItems.forEach((item, index) => {
-        item.addEventListener('click', () => openLightbox(index));
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => openLightbox(item));
     });
 
     if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
@@ -145,13 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            openLightbox((currentIndex - 1 + galleryItems.length) % galleryItems.length);
+            const visibleItems = getVisibleItems();
+            openLightbox(visibleItems[(currentIndex - 1 + visibleItems.length) % visibleItems.length]);
         });
     }
 
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            openLightbox((currentIndex + 1) % galleryItems.length);
+            const visibleItems = getVisibleItems();
+            openLightbox(visibleItems[(currentIndex + 1) % visibleItems.length]);
         });
     }
 
@@ -162,6 +152,41 @@ document.addEventListener('DOMContentLoaded', function () {
             else if (e.key === 'ArrowRight' && nextBtn) nextBtn.click();
         }
     });
+
+    // --- Portfolio Filters ---
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const galleryDescription = document.getElementById('gallery-description');
+    const filterDescriptions = {
+        commercial: 'Commercial photography — a plant technician maintaining and installing interior plants at dealerships and businesses across Tulsa.'
+    };
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', function () {
+            const filter = this.getAttribute('data-filter');
+
+            filterButtons.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            this.classList.add('active');
+            this.setAttribute('aria-pressed', 'true');
+
+            if (galleryDescription) {
+                galleryDescription.textContent = filterDescriptions[filter] || '';
+            }
+
+            galleryItems.forEach(item => {
+                const matches = filter === 'all' || item.getAttribute('data-category') === filter;
+                item.classList.toggle('filtered-out', !matches);
+                if (matches) {
+                    item.classList.remove('animate');
+                    requestAnimationFrame(() => item.classList.add('animate'));
+                }
+            });
+        });
+    });
+
+    document.querySelector('.filter-btn[data-filter="portraits"]').click();
 
     // --- Mobile Menu ---
     const menuToggle = document.querySelector('.menu-toggle');

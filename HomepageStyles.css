@@ -10,17 +10,17 @@
 
 :root {
 	/* Color Palette */
-	--primary: #f5f3f0; /* Cream/Light neutral for backgrounds */
-	--secondary: #193c40; /* Deep Teal - main brand color */
-	--accent: #d96941; /* Terracotta - call-to-action */
-	--dark: #214001; /* Deep Forest Green - text/footer */
-	--medium-green: #2e5902; /* Rich Green - sections */
-	--accent-dark: #a62b1f; /* Deep Terracotta - hover states */
-	--light-bg: #e8e4df; /* Light background */
+	--primary: #f7f5f0; /* Warm cream - backgrounds */
+	--secondary: #2a3828; /* Deep sage - main brand color */
+	--accent: #c4a55a; /* Warm gold - call-to-action */
+	--dark: #1e2a1c; /* Very deep sage - text/footer */
+	--medium-green: #3d5c3a; /* Medium sage - sections */
+	--accent-dark: #a8893f; /* Dark gold - hover states */
+	--light-bg: #eceae4; /* Soft linen - light background */
 
 	/* Typography */
-	--font-heading: "Playfair Display", serif;
-	--font-body: "Lato", sans-serif;
+	--font-heading: "Cormorant Garamond", serif;
+	--font-body: "DM Sans", sans-serif;
 
 	/* Font Weights */
 	--weight-light: 300;
@@ -49,7 +49,7 @@
 	--leading-relaxed: 1.8;
 
 	/* Glassmorphism Effects */
-	--glass-bg: rgba(245, 243, 240, 0.7);
+	--glass-bg: rgba(247, 245, 240, 0.7);
 	--glass-blur: 10px;
 	--glass-border: rgba(255, 255, 255, 0.3);
 }
@@ -225,8 +225,8 @@ nav a:hover::after {
         display: flex !important;
         flex-direction: column;
         justify-content: space-around;
-        width: 45px;
-        height: 45px;
+        width: 48px;
+        height: 48px;
         background: var(--secondary) !important;
         border: 2px solid rgba(255, 255, 255, 0.3) !important;
         cursor: pointer;
@@ -294,7 +294,7 @@ nav a:hover::after {
 	background: var(--secondary);
 }
 
-/* Warm blob — terracotta & deep red */
+/* Warm blob — gold tones */
 .hero::before {
 	content: '';
 	position: absolute;
@@ -303,16 +303,16 @@ nav a:hover::after {
 	top: calc(-25% + var(--blob-a-y, 0px));
 	left: calc(-25% + var(--blob-a-x, 0px));
 	background:
-		radial-gradient(ellipse 60% 55% at 35% 40%, #d96941 0%, transparent 70%),
-		radial-gradient(ellipse 50% 60% at 70% 65%, #a62b1f 0%, transparent 65%);
+		radial-gradient(ellipse 60% 55% at 35% 40%, #c4a55a 0%, transparent 70%),
+		radial-gradient(ellipse 50% 60% at 70% 65%, #a8893f 0%, transparent 65%);
 	filter: blur(70px);
 	animation: blob-a 22s ease-in-out infinite alternate;
 	transform-origin: 75% 70%;
 	z-index: 0;
-	opacity: 0.85;
+	opacity: 0.6;
 }
 
-/* Cool blob — forest green & teal */
+/* Cool blob — sage tones */
 .hero::after {
 	content: '';
 	position: absolute;
@@ -321,8 +321,8 @@ nav a:hover::after {
 	bottom: calc(-25% + var(--blob-b-y, 0px));
 	right: calc(-25% + var(--blob-b-x, 0px));
 	background:
-		radial-gradient(ellipse 65% 50% at 60% 55%, #2e5902 0%, transparent 70%),
-		radial-gradient(ellipse 55% 65% at 25% 35%, #193c40 0%, transparent 65%);
+		radial-gradient(ellipse 65% 50% at 60% 55%, #3d5c3a 0%, transparent 70%),
+		radial-gradient(ellipse 55% 65% at 25% 35%, #1e2a1c 0%, transparent 65%);
 	filter: blur(90px);
 	animation: blob-b 28s ease-in-out infinite alternate;
 	transform-origin: 25% 30%;
@@ -359,6 +359,7 @@ nav a:hover::after {
 }
 
 .hero p {
+	font-family: var(--font-heading);
 	font-size: 1.35rem;
 	margin-bottom: 2rem;
 	font-style: italic;
@@ -388,42 +389,29 @@ nav a:hover::after {
 }
 
 /* Hero SVG Animation */
-@-webkit-keyframes svg-text-anim {
-	40% {
-		stroke-dashoffset: 0;
-		fill: transparent;
+@keyframes logo-fade-in {
+	from {
+		opacity: 0;
+		transform: translateY(-12px);
 	}
-	60% {
-		stroke-dashoffset: 0;
-		fill: var(--primary);
-	}
-	100% {
-		stroke-dashoffset: 0;
-		fill: var(--primary);
+	to {
+		opacity: 1;
+		transform: translateY(0);
 	}
 }
 
-@keyframes svg-text-anim {
-	40% {
-		stroke-dashoffset: 0;
-		fill: transparent;
-	}
-	60% {
-		stroke-dashoffset: 0;
-		fill: var(--primary);
-	}
-	100% {
-		stroke-dashoffset: 0;
-		fill: var(--primary);
-	}
+#logo-svg path {
+	fill: var(--accent);
 }
 
 #logo-svg {
 	width: 100%;
-	max-width: 800px;
+	max-width: 700px;
 	height: auto;
 	display: block;
 	margin: 0 auto;
+	opacity: 0;
+	animation: logo-fade-in 1.2s ease 0.3s forwards;
 }
 
 /* ============================================
@@ -434,6 +422,17 @@ section {
 	padding: 5rem 2rem;
 	max-width: 1200px;
 	margin: 0 auto;
+}
+
+/* Full-bleed sections — background spans the full viewport width */
+section#about,
+section#testimonials,
+section#pricing,
+section#faq,
+section#booking,
+section#contact {
+	max-width: 100%;
+	margin: 0;
 }
 
 h1,
@@ -528,6 +527,52 @@ section {
 	padding: 5rem 2rem;
 }
 
+.gallery-filters {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: -1rem;
+	margin-bottom: 2rem;
+}
+
+.filter-btn {
+	background: transparent;
+	border: 2px solid var(--secondary);
+	color: var(--secondary);
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-normal);
+	padding: 0.5rem 1.25rem;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+	border-color: var(--accent);
+	color: var(--accent);
+}
+
+.filter-btn.active {
+	background-color: var(--accent);
+	border-color: var(--accent);
+	color: var(--primary);
+	box-shadow: 0 2px 8px rgba(217, 105, 65, 0.3);
+}
+
+.gallery-description {
+	text-align: center;
+	font-size: var(--text-sm);
+	color: var(--secondary);
+	opacity: 0.7;
+	font-style: italic;
+	min-height: 1.4em;
+	margin-top: -1rem;
+	margin-bottom: 1.5rem;
+}
+
 .gallery {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -536,6 +581,10 @@ section {
 	max-width: 1400px; /* Wider max-width for gallery */
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.gallery-item.filtered-out {
+	display: none;
 }
 
 .gallery-item {
@@ -547,11 +596,14 @@ section {
 	justify-content: center;
 	color: var(--secondary);
 	font-size: var(--text-base);
-	opacity: 0;
-	transform: scale(0.9);
 	transition: all 0.3s ease;
 	cursor: pointer;
 	position: relative;
+}
+
+.js .gallery-item {
+	opacity: 0;
+	transform: scale(0.9);
 }
 
 .gallery-item.animate {
@@ -565,18 +617,51 @@ section {
 	cursor: pointer;
 }
 
-.gallery-item:hover::after {
-	content: none;
+.gallery-item::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0);
+	opacity: 0;
+	transition: opacity 0.3s ease, background 0.3s ease;
+	pointer-events: none;
+	z-index: 1;
+}
+
+.gallery-item::before {
+	content: '⌕';
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
-	color: var(--primary);
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 10px 20px;
-	border-radius: 5px;
-	font-size: var(--text-sm);
+	transform: translate(-50%, -50%) scale(0.7);
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	font-size: 1.6rem;
+	-webkit-text-stroke: 1.5px white;
+	border: 4px solid rgba(255, 255, 255, 0.9);
+	border-radius: 50%;
+	opacity: 0;
+	transition: opacity 0.3s ease, transform 0.3s ease;
 	pointer-events: none;
+	z-index: 2;
+}
+
+.gallery-item:hover::after {
+	opacity: 1;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item:hover::before {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.gallery-item picture {
+	display: contents;
 }
 
 .gallery-item img {
@@ -592,9 +677,17 @@ section {
 
 .about {
 	background-color: var(--secondary);
+	/* Layer 1: gradient fades top edge from page cream into dark sage */
+	/* Layer 2: SVG peaks texture at bottom */
+	background-image:
+		linear-gradient(to bottom, var(--primary) 0, var(--secondary) 70px),
+		url('Images/about-peaks.svg');
+	background-size: 100% 70px, cover;
+	background-position: top left, center bottom;
+	background-repeat: no-repeat, no-repeat;
 	color: var(--primary);
-	border-radius: 15px;
-	padding: 3rem;
+	border-radius: 0;
+	padding: 5rem 2rem;
 }
 
 .about h2 {
@@ -620,8 +713,12 @@ section {
 
 .testimonials {
 	background-color: var(--light-bg);
-	border-radius: 15px;
-	padding: 5rem 3rem;
+	background-image: url('Images/testimonials-peaks.svg');
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	border-radius: 0;
+	padding: 5rem 2rem;
 }
 
 .testimonials h2 {
@@ -633,6 +730,9 @@ section {
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .testimonial-card {
@@ -700,6 +800,10 @@ section {
 
 .pricing {
 	background-color: var(--primary);
+	background-image: url('Images/pricing-waves.svg');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
 }
 
 .pricing h2 {
@@ -719,6 +823,9 @@ section {
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .pricing-card {
@@ -885,7 +992,8 @@ section {
    ============================================ */
 
 .faq {
-	background-color: var(--primary);
+	background-color: var(--light-bg);
+	padding: 5rem 2rem;
 }
 
 .faq h2 {
@@ -1010,6 +1118,7 @@ section {
 
 .booking {
 	background-color: var(--primary);
+	padding: 5rem 2rem;
 }
 
 .booking-container {
@@ -1017,6 +1126,9 @@ section {
 	grid-template-columns: 1fr 1fr;
 	gap: 3rem;
 	margin-top: 2rem;
+	max-width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .booking-form {
@@ -1096,11 +1208,16 @@ button[type="submit"]:hover {
    ============================================ */
 
 .contact {
-	background-color: var(--accent);
+	background-color: var(--secondary);
+	/* Gradient fades top edge from page cream into dark sage */
+	background-image: linear-gradient(to bottom, var(--primary) 0, var(--secondary) 70px);
+	background-size: 100% 70px;
+	background-position: top left;
+	background-repeat: no-repeat;
 	color: var(--primary);
 	text-align: center;
-	border-radius: 15px;
-	padding: 4rem 3rem;
+	border-radius: 0;
+	padding: 5rem 2rem;
 }
 
 .contact h2 {
@@ -1148,6 +1265,10 @@ button[type="submit"]:hover {
 /* Ensure footer is always visible */
 footer {
 	background-color: var(--dark);
+	background-image: url('Images/footer-waves.svg');
+	background-size: cover;
+	background-position: center top;
+	background-repeat: no-repeat;
 	color: var(--primary);
 	text-align: center;
 	padding: 3rem 2rem;
@@ -1389,7 +1510,7 @@ footer {
 	}
 
 	.hero p {
-		font-family: var(--font-body);
+		font-family: var(--font-heading);
 		font-size: var(--text-lg);
 		margin-bottom: 2rem;
 		font-style: italic;
@@ -1436,7 +1557,7 @@ footer {
 	nav ul li {
 		width: 100%;
 		text-align: center;
-		padding: 1rem 0;
+		padding: 0;
 		border-bottom: 1px solid rgba(25, 60, 64, 0.1);
 		transition: all 0.3s ease;
 	}
@@ -1455,7 +1576,11 @@ footer {
 		color: var(--secondary);
 		font-size: var(--text-base);
 		font-weight: var(--weight-regular);
-		padding: 0.5rem 1rem;
+		padding: 1rem;
+		min-height: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	/* Underline animation on hover */
 	nav a::after {
