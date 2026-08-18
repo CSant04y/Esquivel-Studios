@@ -150,6 +150,14 @@ nav a:hover::after {
 	width: 100%;
 }
 
+nav a.active {
+	color: var(--accent);
+}
+
+nav a.active::after {
+	width: 100%;
+}
+
 /* ============================================
    LANGUAGE TOGGLE
    ============================================ */
@@ -369,23 +377,62 @@ nav a:hover::after {
 }
 
 
+.hero-cta {
+	display: flex;
+	gap: 1.25rem;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 0.5rem;
+}
+
 .cta-button {
 	background-color: var(--primary);
 	color: var(--accent);
-	padding: 1rem 2.5rem;
+	padding: 0.9rem 2.5rem;
 	text-decoration: none;
 	border-radius: 30px;
-	font-size: var(--text-base);
-	transition:
-		transform 0.3s,
-		box-shadow 0.3s;
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
 	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-wider);
+	text-transform: uppercase;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease,
+		background-color 0.3s ease;
 }
 
 .cta-button:hover {
 	transform: translateY(-3px);
-	box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 	background-color: var(--light-bg);
+}
+
+.cta-button-outline {
+	background-color: transparent;
+	color: var(--primary);
+	padding: 0.9rem 2.5rem;
+	text-decoration: none;
+	border-radius: 30px;
+	border: 1.5px solid rgba(247, 245, 240, 0.6);
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-wider);
+	text-transform: uppercase;
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease,
+		border-color 0.3s ease,
+		background-color 0.3s ease;
+}
+
+.cta-button-outline:hover {
+	transform: translateY(-3px);
+	border-color: rgba(247, 245, 240, 0.95);
+	background-color: rgba(247, 245, 240, 0.08);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero SVG Animation */
@@ -430,7 +477,10 @@ section#testimonials,
 section#pricing,
 section#faq,
 section#booking,
-section#contact {
+section#contact,
+section#instagram,
+section#quote,
+section#process {
 	max-width: 100%;
 	margin: 0;
 }
@@ -574,13 +624,17 @@ section {
 }
 
 .gallery {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	gap: 2rem;
+	columns: 3;
+	column-gap: 1rem;
 	margin-top: 2rem;
-	max-width: 1400px; /* Wider max-width for gallery */
+	max-width: 1400px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.gallery.few-items {
+	columns: 2;
+	max-width: 960px;
 }
 
 .gallery-item.filtered-out {
@@ -589,32 +643,33 @@ section {
 
 .gallery-item {
 	background-color: var(--light-bg);
-	height: 300px;
 	border-radius: 10px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: block;
+	break-inside: avoid;
+	margin-bottom: 1rem;
 	color: var(--secondary);
 	font-size: var(--text-base);
-	transition: all 0.3s ease;
+	transition: box-shadow 0.3s ease, opacity 0.4s ease;
 	cursor: pointer;
 	position: relative;
+	overflow: hidden;
 }
 
 .js .gallery-item {
 	opacity: 0;
-	transform: scale(0.9);
 }
 
 .gallery-item.animate {
 	opacity: 1;
-	transform: scale(1);
+}
+
+.gallery-item.fading-out {
+	opacity: 0;
+	pointer-events: none;
 }
 
 .gallery-item:hover {
-	transform: scale(1.05);
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-	cursor: pointer;
+	box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
 }
 
 .gallery-item::after {
@@ -661,13 +716,13 @@ section {
 }
 
 .gallery-item picture {
-	display: contents;
+	display: block;
 }
 
 .gallery-item img {
 	width: 100%;
-	height: 100%;
-	object-fit: cover;
+	height: auto;
+	display: block;
 	border-radius: 10px;
 }
 
@@ -743,6 +798,27 @@ section {
 	transition:
 		transform 0.3s ease,
 		box-shadow 0.3s ease;
+	position: relative;
+	overflow: hidden;
+}
+
+.testimonial-card::before {
+	content: '\201C';
+	font-family: var(--font-heading);
+	font-size: 9rem;
+	color: var(--accent);
+	opacity: 0.13;
+	position: absolute;
+	top: -1.75rem;
+	left: 0.5rem;
+	line-height: 1;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.testimonial-card > * {
+	position: relative;
+	z-index: 1;
 }
 
 .testimonial-card:hover {
@@ -785,12 +861,13 @@ section {
 @media (max-width: 768px) {
 	.testimonials {
 		padding: 3rem 1.5rem;
-		margin: 0 1rem;
+		margin: 0;
 	}
 
 	.testimonials-grid {
 		grid-template-columns: 1fr;
 		gap: 1.5rem;
+		padding: 0;
 	}
 }
 
@@ -993,6 +1070,10 @@ section {
 
 .faq {
 	background-color: var(--light-bg);
+	background-image: url('Images/faq-blobs.svg');
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
 	padding: 5rem 2rem;
 }
 
@@ -1118,6 +1199,10 @@ section {
 
 .booking {
 	background-color: var(--primary);
+	background-image: url('Images/booking-peaks.svg');
+	background-size: cover;
+	background-position: center bottom;
+	background-repeat: no-repeat;
 	padding: 5rem 2rem;
 }
 
@@ -1203,6 +1288,54 @@ button[type="submit"]:hover {
 	text-align: center;
 }
 
+@media (max-width: 768px) {
+	.booking {
+		padding: 3rem 1.5rem;
+	}
+
+	.booking-container {
+		grid-template-columns: 1fr;
+		gap: 2rem;
+	}
+}
+
+.booking-feedback {
+	margin-top: 1.5rem;
+	padding: 0;
+	border-radius: 10px;
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	max-height: 0;
+	overflow: hidden;
+	opacity: 0;
+	transition: max-height 0.5s ease, opacity 0.4s ease, padding 0.4s ease;
+}
+
+.booking-feedback.success {
+	max-height: 200px;
+	opacity: 1;
+	padding: 1.5rem 2rem;
+	background-color: rgba(42, 56, 40, 0.08);
+	border-left: 3px solid var(--secondary);
+	color: var(--secondary);
+}
+
+.booking-feedback.error {
+	max-height: 200px;
+	opacity: 1;
+	padding: 1.5rem 2rem;
+	background-color: rgba(180, 60, 40, 0.07);
+	border-left: 3px solid #b43c28;
+	color: #8a2e1e;
+}
+
+.booking-feedback-title {
+	font-family: var(--font-heading);
+	font-size: var(--text-lg);
+	font-weight: var(--weight-semibold);
+	margin-bottom: 0.4rem;
+}
+
 /* ============================================
    CONTACT SECTION
    ============================================ */
@@ -1246,9 +1379,15 @@ button[type="submit"]:hover {
 }
 
 .contact-icon {
-	font-size: 1.4rem;
-	line-height: 1.6;
 	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	opacity: 0.85;
+}
+
+.contact-icon svg {
+	width: 22px;
+	height: 22px;
 }
 .contact-item a {
 	color: inherit;
@@ -1258,6 +1397,246 @@ button[type="submit"]:hover {
 .contact-item a:hover {
 	opacity: 0.8;
 }
+/* ============================================
+   QUOTE BREAK SECTION
+   ============================================ */
+
+.quote-break {
+	position: relative;
+	background-image: url('Images/Full/portrait-2.webp');
+	background-size: cover;
+	background-position: center 30%;
+	padding: 9rem 2rem;
+	text-align: center;
+}
+
+.quote-break::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: rgba(20, 32, 18, 0.72);
+}
+
+.quote-break-text {
+	position: relative;
+	z-index: 1;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.quote-break-text p {
+	font-family: var(--font-heading);
+	font-size: clamp(1.9rem, 4vw, 3.2rem);
+	font-weight: var(--weight-light);
+	font-style: italic;
+	color: var(--primary);
+	letter-spacing: var(--spacing-normal);
+	line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+	.quote-break {
+		padding: 6rem 2rem;
+		background-attachment: scroll;
+	}
+}
+
+/* ============================================
+   PROCESS / HOW IT WORKS SECTION
+   ============================================ */
+
+.process {
+	background-color: var(--primary);
+	padding: 5rem 2rem;
+}
+
+.process-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0;
+	max-width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.process-step {
+	padding: 2rem 2.5rem;
+}
+
+.process-step:not(:last-child) {
+	border-right: 1px solid rgba(42, 56, 40, 0.15);
+}
+
+.process-number {
+	font-family: var(--font-heading);
+	font-size: 5.5rem;
+	font-weight: var(--weight-light);
+	color: var(--accent);
+	opacity: 0.25;
+	line-height: 1;
+	margin-bottom: 1rem;
+}
+
+.process-step h3 {
+	font-family: var(--font-heading);
+	font-size: var(--text-xl);
+	color: var(--secondary);
+	margin-bottom: 1rem;
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-normal);
+}
+
+.process-step p {
+	font-size: var(--text-base);
+	color: var(--dark);
+	line-height: var(--leading-relaxed);
+	opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+	.process-grid {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.process-step:not(:last-child) {
+		border-right: none;
+		border-bottom: 1px solid rgba(42, 56, 40, 0.15);
+		padding-bottom: 2rem;
+		margin-bottom: 0;
+	}
+
+	.process-step {
+		padding: 2rem 1rem;
+	}
+}
+
+/* ============================================
+   INSTAGRAM SECTION
+   ============================================ */
+
+.instagram-section {
+	background-color: var(--primary);
+	background-image: linear-gradient(to bottom, var(--secondary) 0, var(--primary) 80px);
+	background-size: 100% 80px;
+	background-position: top left;
+	background-repeat: no-repeat;
+	padding: 5rem 2rem;
+	text-align: center;
+}
+
+.instagram-section h2 {
+	color: var(--secondary);
+}
+
+.instagram-handle {
+	font-family: var(--font-body);
+	font-size: var(--text-base);
+	letter-spacing: var(--spacing-wide);
+	margin-top: -1.5rem;
+	margin-bottom: 3rem;
+}
+
+.instagram-handle a {
+	color: var(--accent);
+	text-decoration: none;
+	font-weight: var(--weight-semibold);
+	transition: color 0.3s ease;
+}
+
+.instagram-handle a:hover {
+	color: var(--accent-dark);
+}
+
+.instagram-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.75rem;
+	max-width: 900px;
+	margin: 0 auto 3rem;
+}
+
+.instagram-item {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border-radius: 8px;
+	aspect-ratio: 1 / 1;
+}
+
+.instagram-item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	transition: transform 0.4s ease;
+}
+
+.instagram-item:hover img {
+	transform: scale(1.08);
+}
+
+.instagram-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(42, 56, 40, 0.55);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	border-radius: 8px;
+}
+
+.instagram-item:hover .instagram-overlay {
+	opacity: 1;
+}
+
+.instagram-overlay svg {
+	width: 40px;
+	height: 40px;
+	fill: var(--primary);
+	opacity: 0.9;
+}
+
+.instagram-follow-btn {
+	display: inline-block;
+	background-color: var(--secondary);
+	color: var(--primary);
+	padding: 0.9rem 2.5rem;
+	border-radius: 30px;
+	text-decoration: none;
+	font-family: var(--font-body);
+	font-size: var(--text-sm);
+	font-weight: var(--weight-semibold);
+	letter-spacing: var(--spacing-wider);
+	text-transform: uppercase;
+	transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.instagram-follow-btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(42, 56, 40, 0.3);
+	background-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+	.instagram-grid {
+		gap: 0.5rem;
+	}
+
+	.instagram-section {
+		padding: 3rem 1.5rem;
+		margin: 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.instagram-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
 /* ============================================
    FOOTER
    ============================================ */
@@ -1486,6 +1865,42 @@ footer {
 	body {
 		position: static;
 	}
+
+	/* Hero CTA buttons stack on mobile */
+	.hero-cta {
+		flex-direction: column;
+		gap: 1rem;
+	}
+
+	.cta-button,
+	.cta-button-outline {
+		width: 100%;
+		max-width: 280px;
+		text-align: center;
+	}
+
+	/* Full-bleed section padding reduction on mobile */
+	section#about,
+	section#testimonials,
+	section#pricing,
+	section#faq,
+	section#contact,
+	section#instagram,
+	section#process {
+		padding: 3rem 1.5rem;
+	}
+
+	.about {
+		padding: 3rem 1.5rem;
+	}
+
+	.contact {
+		padding: 3rem 1.5rem;
+	}
+
+	.faq {
+		padding: 3rem 1.5rem;
+	}
 	/* Logo SVG */
 	#logo-svg {
 		width: 95%;
@@ -1532,95 +1947,147 @@ footer {
 		box-shadow: none !important;
 	}
 
+	/* Slide-in sidebar */
 	nav ul {
-		display: none; /* Hidden by default */
+		display: flex;
 		flex-direction: column;
 		gap: 0;
-		position: absolute;
-		top: 100%;
+		position: fixed;
+		top: 0;
 		left: 0;
-		right: 0;
-		width: 100%;
-		max-width: 100vw;
-		background: var(--glass-bg);
-		backdrop-filter: blur(var(--glass-blur));
-		padding: 1rem 0;
-		align-items: center;
-		box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-		animation: slideDown 0.3s ease;
+		width: 280px;
+		height: 100vh;
+		background: var(--secondary);
+		padding: 5rem 0 2rem;
+		align-items: stretch;
+		transform: translateX(-100%);
+		visibility: hidden;
+		pointer-events: none;
+		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0.35s;
+		z-index: 9998;
+		overflow-y: auto;
 	}
 
 	nav ul.active {
-		display: flex;
+		transform: translateX(0);
+		visibility: visible;
+		pointer-events: auto;
+		transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s linear 0s;
+		box-shadow: 8px 0 40px rgba(0, 0, 0, 0.4);
 	}
 
 	nav ul li {
 		width: 100%;
-		text-align: center;
+		text-align: left;
 		padding: 0;
-		border-bottom: 1px solid rgba(25, 60, 64, 0.1);
-		transition: all 0.3s ease;
+		border-bottom: 1px solid rgba(247, 245, 240, 0.07);
+		transition: background 0.2s ease;
 	}
 
 	nav ul li:last-child {
 		border-bottom: none;
 	}
+
 	nav ul li:hover {
-		background-color: rgba(217, 105, 65, 0.1);
-		transform: scale(1.02);
+		background-color: rgba(196, 165, 90, 0.08);
+		transform: none;
 	}
 
 	nav a {
-		display: block;
-		width: 100%;
-		color: var(--secondary);
-		font-size: var(--text-base);
-		font-weight: var(--weight-regular);
-		padding: 1rem;
-		min-height: 48px;
 		display: flex;
+		width: 100%;
+		color: rgba(247, 245, 240, 0.8);
+		font-size: var(--text-sm);
+		font-weight: var(--weight-regular);
+		padding: 0.95rem 1.5rem;
+		min-height: 48px;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-start;
+		border-left: 3px solid transparent;
+		letter-spacing: var(--spacing-normal);
+		transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 	}
-	/* Underline animation on hover */
+
 	nav a::after {
 		display: none;
 	}
 
-	nav a:hover::after {
-		width: 100%;
-	}
-
 	nav a:hover {
 		color: var(--accent);
-		transform: translateY(-2px);
+		border-left-color: var(--accent);
+		transform: none;
 	}
 
-	/* Active/Click state */
-	nav a:active {
-		transform: translateY(0);
+	nav a.active {
+		color: var(--accent);
+		border-left-color: var(--accent);
+		background: rgba(196, 165, 90, 0.1);
 	}
 
-	/* Menu Toggle styles are defined in the outer @media (max-width: 768px) block above */
-	@keyframes slideDown {
-		from {
-			opacity: 0;
-			transform: translateY(-20px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	nav a.active::after {
+		display: none;
+	}
+
+	/* Book a Session — gold accent in sidebar */
+	nav a[href="#booking"] {
+		color: var(--accent);
+		font-weight: var(--weight-semibold);
+		margin-top: 0.5rem;
+	}
+
+	nav a[href="#booking"]:hover {
+		background-color: rgba(196, 165, 90, 0.15);
+		border-left-color: var(--accent);
+	}
+
+	/* Overlay backdrop — z-index must be below nav (1000) so the sidebar
+	   (inside nav's stacking context) paints above it */
+	.nav-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.55);
+		z-index: 999;
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+	}
+
+	.nav-overlay.active {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+		backdrop-filter: blur(2px);
+		transition: opacity 0.35s ease, visibility 0s linear 0s;
 	}
 
 	/* Gallery - Mobile */
+	#portfolio {
+		padding-bottom: 2rem;
+	}
+
+	.gallery-filters {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		justify-items: center;
+		gap: 0.65rem;
+		max-width: 340px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.filter-btn {
+		width: 100%;
+		text-align: center;
+	}
+
 	.gallery {
-		grid-template-columns: repeat(2, 1fr);
-		gap: 1rem;
+		columns: 2;
+		column-gap: 0.6rem;
 	}
 
 	.gallery-item {
-		height: 200px;
+		margin-bottom: 0.6rem;
 	}
 
 	/* Booking - Mobile */
@@ -1634,19 +2101,20 @@ footer {
 	}
 
 	.about {
-		padding: 2.5rem 1.5rem;
-		margin: 0 1rem;
+		padding: 3rem 1.5rem;
+		margin: 0;
+		border-radius: 0;
 	}
 
 	.about h2 {
-		font-size: var(--text-2xl); /* Smaller heading on mobile */
+		font-size: var(--text-2xl);
 		margin-bottom: 1.5rem;
 	}
 
 	.about p {
-		font-size: 1rem; /* Slightly smaller */
-		line-height: 1.9; /* More breathing room */
-		text-align: left; /* Left-align for easier reading on mobile */
+		font-size: 1rem;
+		line-height: 1.9;
+		text-align: left;
 		max-width: 100%;
 		margin: 0 0 1.5rem 0;
 		padding: 0;
@@ -1656,26 +2124,22 @@ footer {
 		margin-bottom: 0;
 	}
 
-	.about,
-	.contact {
-		border-radius: 20px;
-		margin: 0 1rem;
-	}
-
 	.booking-form,
 	.calendar-section {
 		border-radius: 15px;
 	}
 
 	.contact {
-		padding: 3rem 2rem;
-		margin: 2rem 1rem;
-		border-radius: 20px;
+		padding: 3rem 1.5rem;
+		margin: 0;
+		border-radius: 0;
 	}
+
 	.contact h2 {
 		font-size: var(--text-3xl);
 		margin-bottom: 2.5rem;
 	}
+
 	.contact-item a {
 		color: inherit;
 		text-decoration: none;
@@ -1781,6 +2245,31 @@ footer {
 	}
 }
 
+/* Book a Session — CTA pill in desktop nav */
+@media (min-width: 769px) {
+	nav a[href="#booking"] {
+		background-color: var(--accent);
+		color: var(--primary) !important;
+		padding: 0.5rem 1.4rem;
+		border-radius: 25px;
+		font-weight: var(--weight-semibold);
+		transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+	}
+
+	nav a[href="#booking"]:hover,
+	nav a[href="#booking"].active {
+		background-color: var(--accent-dark) !important;
+		color: var(--primary) !important;
+		transform: translateY(-2px);
+		box-shadow: 0 4px 14px rgba(196, 165, 90, 0.4);
+	}
+
+	nav a[href="#booking"]::after,
+	nav a[href="#booking"].active::after {
+		display: none !important;
+	}
+}
+
 /* Tablet / medium screens */
 @media (min-width: 769px) and (max-width: 1100px) {
 	nav {
@@ -1810,4 +2299,55 @@ footer {
 
 .menu-toggle {
 	display: none;
+}
+
+/* ============================================
+   FOCUS STYLES (KEYBOARD NAVIGATION)
+   ============================================ */
+
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 3px;
+	border-radius: 3px;
+}
+
+:focus:not(:focus-visible) {
+	outline: none;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+	outline: none;
+	border-color: var(--accent-dark);
+	box-shadow: 0 0 0 3px rgba(196, 165, 90, 0.25);
+}
+
+/* ============================================
+   REDUCED MOTION (ACCESSIBILITY)
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+
+	.fade-in-section {
+		opacity: 1;
+		transform: none;
+	}
+
+	.js .gallery-item {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	#logo-svg {
+		opacity: 1;
+		animation: none;
+	}
 }

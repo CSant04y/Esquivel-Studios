@@ -24,20 +24,28 @@
         gtag('config', 'G-MKDZEW759S');
     </script>
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://carlosesquivelstudios.com/">
+
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://carlosesquivelstudios.com/">
+    <meta property="og:site_name" content="Esquivel Studios">
     <meta property="og:title" content="Esquivel Studios | Portrait Photography in Tulsa">
     <meta property="og:description"
         content="Professional portrait and candid photography in Tulsa, Oklahoma. Capturing authentic moments and genuine expressions.">
-    <meta property="og:image" content="https://carlosesquivelstudios.com/Images/Thumbnails/portrait-1.jpg">
+    <meta property="og:image" content="https://carlosesquivelstudios.com/Images/Thumbnails/portrait-1.webp">
+    <meta property="og:locale" content="en_US">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Esquivel Studios | Portrait Photography in Tulsa">
     <meta name="twitter:description" content="Professional portrait and candid photography in Tulsa, Oklahoma.">
-    <meta name="twitter:image" content="https://carlosesquivelstudios.com/Images/Thumbnails/portrait-1.jpg">
+    <meta name="twitter:image" content="https://carlosesquivelstudios.com/Images/Thumbnails/portrait-1.webp">
 
+
+    <!-- Theme color for mobile browser chrome -->
+    <meta name="theme-color" content="#2a3828">
 
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -47,6 +55,40 @@
     <!-- Content Security Policy -->
     <meta http-equiv="Content-Security-Policy"
         content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://formspree.io https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com;">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Esquivel Studios",
+      "description": "Professional portrait and candid photography in Tulsa, Oklahoma. Specializing in senior portraits, couples sessions, family photography, and commercial work.",
+      "url": "https://carlosesquivelstudios.com",
+      "telephone": "+19182808592",
+      "email": "contact@carlosesquivelstudios.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Tulsa",
+        "addressRegion": "OK",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 36.1540,
+        "longitude": -95.9928
+      },
+      "image": "https://carlosesquivelstudios.com/Images/Thumbnails/portrait-1.webp",
+      "priceRange": "$$",
+      "sameAs": [
+        "https://www.instagram.com/esquivel_studios/"
+      ],
+      "founder": {
+        "@type": "Person",
+        "name": "Carlos Esquivel"
+      },
+      "knowsAbout": ["Portrait Photography", "Senior Photography", "Couples Photography", "Family Photography", "Commercial Photography"]
+    }
+    </script>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -88,6 +130,7 @@
             <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
         </ul>
     </nav>
+    <div id="nav-overlay" class="nav-overlay" aria-hidden="true"></div>
 
     <!-- Hero Section -->
     <!-- <section id="home" class="hero fade-in-section">
@@ -162,9 +205,14 @@
                 Portrait & Candid Photography in Tulsa
             </p>
 
-            <a href="#booking" class="cta-button" data-en="Book Your Session" data-es="Reserva Tu Sesión">
-                Book Your Session
-            </a>
+            <div class="hero-cta">
+                <a href="#booking" class="cta-button" data-en="Book Your Session" data-es="Reserva Tu Sesión">
+                    Book Your Session
+                </a>
+                <a href="#portfolio" class="cta-button-outline" data-en="View Work" data-es="Ver Trabajo">
+                    View Work
+                </a>
+            </div>
         </div>
     </section>
     <!-- Portfolio Section -->
@@ -354,6 +402,15 @@
         </p>
     </section>
 
+    <!-- Quote Break -->
+    <section id="quote" class="quote-break fade-in-section">
+        <blockquote class="quote-break-text">
+            <p data-en="Capturing who you are,&nbsp;not just how you look."
+               data-es="Capturando quién eres,&nbsp;no solo cómo te ves."
+            >Capturing who you are,&nbsp;not just how you look.</p>
+        </blockquote>
+    </section>
+
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials fade-in-section">
         <h2 data-en="What Clients Say" data-es="Lo Que Dicen los Clientes">What Clients Say</h2>
@@ -492,6 +549,34 @@
             contact me to discuss your vision!</p>
     </section>
 
+
+    <!-- How It Works Section -->
+    <section id="process" class="process fade-in-section">
+        <h2 data-en="How It Works" data-es="Cómo Funciona">How It Works</h2>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="process-number">01</div>
+                <h3 data-en="Book" data-es="Reserva">Book</h3>
+                <p data-en="Fill out the booking form or send me a message. I'll respond within 24 hours to confirm your date and talk through your vision."
+                   data-es="Llena el formulario de reserva o envíame un mensaje. Responderé en 24 horas para confirmar tu fecha y hablar sobre tu visión."
+                >Fill out the booking form or send me a message. I'll respond within 24 hours to confirm your date and talk through your vision.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">02</div>
+                <h3 data-en="We Shoot" data-es="La Sesión">We Shoot</h3>
+                <p data-en="Show up as yourself. I'll guide you through the session naturally — no stiff posing, just authentic moments captured in great light."
+                   data-es="Llega como eres. Te guiaré naturalmente por la sesión — sin poses rígidas, solo momentos auténticos con buena luz."
+                >Show up as yourself. I'll guide you through the session naturally — no stiff posing, just authentic moments captured in great light.</p>
+            </div>
+            <div class="process-step">
+                <div class="process-number">03</div>
+                <h3 data-en="Receive Your Gallery" data-es="Recibe Tu Galería">Receive Your Gallery</h3>
+                <p data-en="Your edited photos are delivered through a private online gallery within 7–10 days. Download, share, and enjoy them forever."
+                   data-es="Tus fotos editadas se entregan en una galería privada en línea en 7 a 10 días. Descarga, comparte y disfrútalas para siempre."
+                >Your edited photos are delivered through a private online gallery within 7–10 days. Download, share, and enjoy them forever.</p>
+            </div>
+        </div>
+    </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq fade-in-section">
@@ -692,6 +777,7 @@
 
                     <button type="submit" data-en="Submit Booking Request" data-es="Enviar Solicitud de Reserva">Submit Booking Request</button>
                 </form>
+                <div id="booking-feedback" class="booking-feedback" aria-live="polite"></div>
             </div>
 
             <div class="calendar-section">
@@ -716,18 +802,60 @@
 
         <div class="contact-info">
             <div class="contact-item">
-                <span class="contact-icon">📧</span>
+                <span class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                </span>
                 <a href="mailto:contact@carlosesquivelstudios.com">contact@carlosesquivelstudios.com</a>
             </div>
             <div class="contact-item">
-                <span class="contact-icon">📱</span>
+                <span class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                </span>
                 <a href="tel:+19182808592">(918) 280-8592</a>
             </div>
             <div class="contact-item">
-                <span class="contact-icon">📍</span>
+                <span class="contact-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
                 <span data-en="Tulsa, Oklahoma" data-es="Tulsa, Oklahoma">Tulsa, Oklahoma</span>
             </div>
         </div>
+    </section>
+
+    <section id="instagram" class="instagram-section fade-in-section">
+        <h2 data-en="Follow Along" data-es="Síguenos">Follow Along</h2>
+        <p class="instagram-handle">
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener">@esquivel_studios</a>
+        </p>
+        <div class="instagram-grid">
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/portrait-1.webp" alt="Portrait session by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/portrait-2.webp" alt="Portrait session by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/portrait-3.webp" alt="Portrait session by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/portrait-4.webp" alt="Portrait session by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/candid-1.webp" alt="Candid photography by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+            <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener" class="instagram-item">
+                <img src="Images/Thumbnails/candid-2.webp" alt="Candid photography by Esquivel Studios" loading="lazy">
+                <div class="instagram-overlay"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+            </a>
+        </div>
+        <a href="https://www.instagram.com/esquivel_studios/" target="_blank" rel="noopener"
+           class="instagram-follow-btn"
+           data-en="Follow on Instagram" data-es="Síguenos en Instagram">Follow on Instagram</a>
     </section>
 
     <!-- Footer -->

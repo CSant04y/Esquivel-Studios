@@ -73,6 +73,28 @@ const appearOnScroll = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in-section').forEach(el => appearOnScroll.observe(el));
 
 // ============================================
+//   SCROLL-SPY (ACTIVE NAV LINK)
+// ============================================
+const spyLinks = document.querySelectorAll('nav a[href^="#"]');
+const spySections = document.querySelectorAll('section[id]');
+
+const sectionSpy = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const targetHref = '#' + entry.target.id;
+            spyLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === targetHref);
+            });
+        }
+    });
+}, {
+    threshold: 0.25,
+    rootMargin: '-70px 0px -50% 0px'
+});
+
+spySections.forEach(section => sectionSpy.observe(section));
+
+// ============================================
 //   GALLERY STAGGERED ANIMATION
 // ============================================
 const galleryObserver = new IntersectionObserver((entries) => {
@@ -160,6 +182,8 @@ document.addEventListener('DOMContentLoaded', function () {
         commercial: 'Commercial photography — a plant technician maintaining and installing interior plants at dealerships and businesses across Tulsa.'
     };
 
+    let filterTimeout = null;
+
     filterButtons.forEach(btn => {
         btn.addEventListener('click', function () {
             const filter = this.getAttribute('data-filter');
@@ -175,14 +199,45 @@ document.addEventListener('DOMContentLoaded', function () {
                 galleryDescription.textContent = filterDescriptions[filter] || '';
             }
 
+            // Cancel any in-flight fade and instantly resolve stuck items
+            if (filterTimeout) clearTimeout(filterTimeout);
             galleryItems.forEach(item => {
-                const matches = filter === 'all' || item.getAttribute('data-category') === filter;
-                item.classList.toggle('filtered-out', !matches);
-                if (matches) {
-                    item.classList.remove('animate');
-                    requestAnimationFrame(() => item.classList.add('animate'));
+                if (item.classList.contains('fading-out')) {
+                    item.classList.remove('fading-out');
+                    item.classList.add('filtered-out');
                 }
             });
+
+            // Fade out visible items that no longer match
+            galleryItems.forEach(item => {
+                const matches = filter === 'all' || item.getAttribute('data-category') === filter;
+                if (!matches && !item.classList.contains('filtered-out')) {
+                    item.classList.add('fading-out');
+                }
+            });
+
+            // After fade completes: hide non-matching, reveal matching
+            filterTimeout = setTimeout(() => {
+                galleryItems.forEach(item => {
+                    const matches = filter === 'all' || item.getAttribute('data-category') === filter;
+                    if (!matches) {
+                        item.classList.remove('fading-out');
+                        item.classList.add('filtered-out');
+                    } else {
+                        item.classList.remove('filtered-out');
+                        item.classList.remove('animate');
+                        requestAnimationFrame(() => requestAnimationFrame(() => item.classList.add('animate')));
+                    }
+                });
+
+                const gallery = document.querySelector('.gallery');
+                if (gallery) {
+                    const visibleCount = Array.from(galleryItems).filter(i => !i.classList.contains('filtered-out')).length;
+                    gallery.classList.toggle('few-items', visibleCount <= 4);
+                }
+
+                filterTimeout = null;
+            }, 380);
         });
     });
 
@@ -191,20 +246,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // --- Mobile Menu ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navMenu = document.querySelector('nav ul');
+    const navOverlay = document.getElementById('nav-overlay');
+
+    function closeMenu() {
+        navMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        if (navOverlay) navOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', function () {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // triggers X animation
+            const isOpen = navMenu.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            if (navOverlay) navOverlay.classList.toggle('active', isOpen);
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
-        // Close menu when a nav link is clicked
         document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
+            link.addEventListener('click', closeMenu);
         });
+
+        if (navOverlay) navOverlay.addEventListener('click', closeMenu);
     }
 
     // --- FAQ Accordion ---
@@ -223,12 +286,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const bookingForm = document.getElementById('bookingForm');
 
     if (bookingForm) {
+        const feedback = document.getElementById('booking-feedback');
+
+        function showFeedback(type, title, message) {
+            if (!feedback) return;
+            feedback.className = `booking-feedback ${type}`;
+            feedback.innerHTML = `<div class="booking-feedback-title">${title}</div><p>${message}</p>`;
+            feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
         bookingForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const submitButton = this.querySelector('button[type="submit"]');
             const lang = localStorage.getItem('language') || 'en';
             submitButton.disabled = true;
             submitButton.textContent = lang === 'es' ? 'Enviando...' : 'Sending...';
+            if (feedback) feedback.className = 'booking-feedback';
 
             try {
                 const response = await fetch(this.action, {
@@ -238,19 +311,31 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response.ok) {
-                    alert(lang === 'es'
-                        ? '¡Gracias por tu solicitud de reserva! Me pondré en contacto contigo en 24 horas para confirmar tu sesión.'
-                        : 'Thank you for your booking request! I will get back to you within 24 hours to confirm your session.');
                     this.reset();
+                    showFeedback(
+                        'success',
+                        lang === 'es' ? '¡Solicitud enviada!' : 'Request Sent',
+                        lang === 'es'
+                            ? 'Gracias por tu solicitud. Me pondré en contacto contigo en 24 horas para confirmar tu sesión.'
+                            : 'Thank you for reaching out. I\'ll be in touch within 24 hours to confirm your session.'
+                    );
                 } else {
-                    alert(lang === 'es'
-                        ? 'Ups, hubo un problema. Por favor envíame un correo directamente a contact@carlosesquivelstudios.com'
-                        : 'Oops! There was a problem. Please email me directly at contact@carlosesquivelstudios.com');
+                    showFeedback(
+                        'error',
+                        lang === 'es' ? 'Algo salió mal' : 'Something went wrong',
+                        lang === 'es'
+                            ? 'Por favor envíame un correo directamente a contact@carlosesquivelstudios.com'
+                            : 'Please email me directly at contact@carlosesquivelstudios.com'
+                    );
                 }
             } catch {
-                alert(lang === 'es'
-                    ? 'Ups, hubo un problema. Por favor envíame un correo directamente a contact@carlosesquivelstudios.com'
-                    : 'Oops! There was a problem. Please email me directly at contact@carlosesquivelstudios.com');
+                showFeedback(
+                    'error',
+                    lang === 'es' ? 'Algo salió mal' : 'Something went wrong',
+                    lang === 'es'
+                        ? 'Por favor envíame un correo directamente a contact@carlosesquivelstudios.com'
+                        : 'Please email me directly at contact@carlosesquivelstudios.com'
+                );
             } finally {
                 submitButton.disabled = false;
                 submitButton.textContent = submitButton.getAttribute(`data-${lang}`) || 'Submit Booking Request';
