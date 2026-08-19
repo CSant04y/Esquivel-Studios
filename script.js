@@ -18,9 +18,16 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const nav = document.querySelector('nav');
 const backToTopButton = document.getElementById('back-to-top');
 const heroSection = document.querySelector('.hero');
+const scrollProgressBar = document.getElementById('scroll-progress');
 
 window.addEventListener('scroll', function () {
     const scrolled = window.pageYOffset;
+
+    // Scroll progress bar
+    if (scrollProgressBar) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgressBar.style.width = `${(scrolled / docHeight) * 100}%`;
+    }
 
     // Nav glassmorphism intensity
     if (nav) {
@@ -71,6 +78,22 @@ const appearOnScroll = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 document.querySelectorAll('.fade-in-section').forEach(el => appearOnScroll.observe(el));
+
+// Testimonial card stagger
+const testimonialObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.testimonial-card');
+            cards.forEach((card, i) => {
+                setTimeout(() => card.classList.add('card-visible'), i * 150);
+            });
+            testimonialObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.2 });
+
+const testimonialsSection = document.querySelector('#testimonials');
+if (testimonialsSection) testimonialObserver.observe(testimonialsSection);
 
 // ============================================
 //   SCROLL-SPY (ACTIVE NAV LINK)
@@ -334,11 +357,26 @@ document.addEventListener('DOMContentLoaded', function () {
     const faqItems = document.querySelectorAll('.faq-item');
 
     faqItems.forEach(item => {
+        const answer = item.querySelector('.faq-answer');
         item.querySelector('.faq-question').addEventListener('click', function () {
+            const isActive = item.classList.contains('active');
+
+            // Close all others
             faqItems.forEach(other => {
-                if (other !== item) other.classList.remove('active');
+                if (other !== item && other.classList.contains('active')) {
+                    other.classList.remove('active');
+                    other.querySelector('.faq-answer').style.maxHeight = '0';
+                }
             });
-            item.classList.toggle('active');
+
+            // Toggle current using actual content height for smooth animation
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = '0';
+            } else {
+                item.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
         });
     });
 
