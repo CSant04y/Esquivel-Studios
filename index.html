@@ -92,6 +92,8 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <!-- Preload first gallery image for faster LCP -->
+    <link rel="preload" as="image" href="Images/Thumbnails/portrait-1.webp" type="image/webp">
     <link rel="stylesheet" href="HomepageStyles.css">
 
     <!-- Typography -->
@@ -227,156 +229,227 @@
                 aria-pressed="false">Candids</button>
             <button type="button" class="filter-btn" data-filter="commercial" data-en="Commercial" data-es="Comercial"
                 aria-pressed="false">Commercial</button>
+            <button type="button" class="filter-btn" data-filter="family" data-en="Family" data-es="Familia"
+                aria-pressed="false">Family</button>
         </div>
         <p class="gallery-description" id="gallery-description"></p>
         <div class="gallery">
-            <div class="gallery-item" data-full="Images/Full/portrait-1.webp" data-category="portraits">
+            <div class="gallery-item" data-full="Images/Medium/portrait-1.webp" data-category="portraits">
                 <picture>
-                    <source srcset="Images/Thumbnails/portrait-1.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/portrait-1.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/portrait-1.jpg"
+                        srcset="Images/Thumbnails/portrait-1.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Fall couples portrait session by the lake in Tulsa Oklahoma" loading="lazy">
                 </picture>
             </div>
-            <div class="gallery-item" data-full="Images/Full/portrait-2.webp" data-category="portraits">
+            <div class="gallery-item" data-full="Images/Medium/portrait-2.webp" data-category="portraits">
                 <picture>
-                    <source srcset="Images/Thumbnails/portrait-2.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/portrait-2.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/portrait-2.jpg"
+                        srcset="Images/Thumbnails/portrait-2.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Senior portrait in autumn leaves, natural light photography Tulsa" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/candid-1.webp" data-category="candids">
                 <picture>
-                    <source srcset="Images/Thumbnails/candid-1.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/candid-1.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/candid-1.jpg"
+                        srcset="Images/Thumbnails/candid-1.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Best friends golden hour portrait session with dog in field" loading="lazy">
                 </picture>
             </div>
-            <div class="gallery-item" data-full="Images/Full/portrait-3.webp" data-category="portraits">
+            <div class="gallery-item" data-full="Images/Medium/portrait-3.webp" data-category="portraits">
                 <picture>
-                    <source srcset="Images/Thumbnails/portrait-3.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/portrait-3.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/portrait-3.jpg"
+                        srcset="Images/Thumbnails/portrait-3.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Casual outdoor senior portrait on rock, Oklahoma photographer" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/candid-2.webp" data-category="candids">
                 <picture>
-                    <source srcset="Images/Thumbnails/candid-2.webp" type="image/webp">
-                    <img src="Images/Thumbnails/candid-2.jpg" alt="Dreamy senior session in natural field setting Tulsa"
+                    <source srcset="Images/Thumbnails/candid-2.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/candid-2.jpg"
+                        srcset="Images/Thumbnails/candid-2.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" alt="Dreamy senior session in natural field setting Tulsa"
                         loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/portrait-4.webp" data-category="portraits">
                 <picture>
-                    <source srcset="Images/Thumbnails/portrait-4.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/portrait-4.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/portrait-4.jpg"
+                        srcset="Images/Thumbnails/portrait-4.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Sunset couples engagement portrait session in Tulsa Oklahoma" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-1.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-1.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-1.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-1.jpg"
+                        srcset="Images/Thumbnails/commercial-1.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Plant tech maintaining a fiddle-leaf fig at a Tulsa business entrance" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-4.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-4.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-4.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-4.jpg"
+                        srcset="Images/Thumbnails/commercial-4.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Tall potted plant styled in a car dealership showroom lobby, Tulsa Oklahoma" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-7.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-7.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-7.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-7.jpg"
+                        srcset="Images/Thumbnails/commercial-7.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Snake plant planters styled between columns in a modern office lobby" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-11.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-11.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-11.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-11.jpg"
+                        srcset="Images/Thumbnails/commercial-11.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Close-up of snake plants and orange bromeliad flowers in a commercial planter"
                         loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-13.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-13.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-13.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-13.jpg"
+                        srcset="Images/Thumbnails/commercial-13.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Marble corporate atrium lobby styled with indoor trees, symmetric wide view" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-14.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-14.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-14.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-14.jpg"
+                        srcset="Images/Thumbnails/commercial-14.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Leather lounge chair and styled planter vignette on marble flooring" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-15.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-15.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-15.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-15.jpg"
+                        srcset="Images/Thumbnails/commercial-15.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Row of snake plants lining a glass corporate corridor" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-18.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-18.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-18.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-18.jpg"
+                        srcset="Images/Thumbnails/commercial-18.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Fiddle-leaf fig styled by a floor-to-ceiling window in a brick-and-glass lobby"
                         loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-23.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-23.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-23.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-23.jpg"
+                        srcset="Images/Thumbnails/commercial-23.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Spanish-tile arched patio styled with potted palms and greenery" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-24.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-24.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-24.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-24.jpg"
+                        srcset="Images/Thumbnails/commercial-24.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Trailing succulent in a blue ombre glazed planter on a restaurant patio" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-28.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-28.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-28.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-28.jpg"
+                        srcset="Images/Thumbnails/commercial-28.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Dracaena styled between armchairs in a healthcare waiting area" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-31.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-31.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-31.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-31.jpg"
+                        srcset="Images/Thumbnails/commercial-31.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Plant tech tending to interior plants in a healthcare office setting" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-34.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-34.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-34.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-34.jpg"
+                        srcset="Images/Thumbnails/commercial-34.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Potted plants beside an elevator lobby with city views" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-36.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-36.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-36.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-36.jpg"
+                        srcset="Images/Thumbnails/commercial-36.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Fiddle-leaf fig and palm styled together against black marble" loading="lazy">
                 </picture>
             </div>
             <div class="gallery-item" data-full="Images/Full/commercial-37.webp" data-category="commercial">
                 <picture>
-                    <source srcset="Images/Thumbnails/commercial-37.webp" type="image/webp">
+                    <source srcset="Images/Thumbnails/commercial-37.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
                     <img src="Images/Thumbnails/commercial-37.jpg"
+                        srcset="Images/Thumbnails/commercial-37.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
                         alt="Dramatic side-lit potted trees styled against a slatted wood wall" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-5.webp" data-category="portraits">
+                <picture>
+                    <source srcset="Images/Thumbnails/portrait-5.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/portrait-5.jpg"
+                        srcset="Images/Thumbnails/portrait-5.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Senior portrait, young woman in white dress looking back under botanical garden pergola arch, Tulsa Oklahoma" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-6.webp" data-category="portraits">
+                <picture>
+                    <source srcset="Images/Thumbnails/portrait-6.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/portrait-6.jpg"
+                        srcset="Images/Thumbnails/portrait-6.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Senior portrait session, young woman in white dress seated on stone bench with yellow flowers, Tulsa Oklahoma" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-7.webp" data-category="portraits">
+                <picture>
+                    <source srcset="Images/Thumbnails/portrait-7.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/portrait-7.jpg"
+                        srcset="Images/Thumbnails/portrait-7.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Senior portrait, young woman in pink floral dress seated on stone wall with wildflower meadow, Tulsa Oklahoma" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/portrait-8.webp" data-category="portraits">
+                <picture>
+                    <source srcset="Images/Thumbnails/portrait-8.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/portrait-8.jpg"
+                        srcset="Images/Thumbnails/portrait-8.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Full-length senior portrait, young woman in white dress walking down brick garden path, Tulsa Oklahoma" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/family-1.webp" data-category="family">
+                <picture>
+                    <source srcset="Images/Thumbnails/family-1.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/family-1.jpg"
+                        srcset="Images/Thumbnails/family-1.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Family portrait of six with baby girl in pink, outdoor portrait session in Tulsa Oklahoma" loading="lazy">
+                </picture>
+            </div>
+            <div class="gallery-item" data-full="Images/Full/family-2.webp" data-category="family">
+                <picture>
+                    <source srcset="Images/Thumbnails/family-2.webp 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px" type="image/webp">
+                    <img src="Images/Thumbnails/family-2.jpg"
+                        srcset="Images/Thumbnails/family-2.jpg 800w" sizes="(max-width: 768px) calc(50vw - 1rem), 466px"
+                        alt="Multi-generational family portrait of four women outdoors, Tulsa Oklahoma photographer" loading="lazy">
                 </picture>
             </div>
         </div>
@@ -416,6 +489,7 @@
         <h2 data-en="What Clients Say" data-es="Lo Que Dicen los Clientes">What Clients Say</h2>
         <div class="testimonials-grid">
             <div class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">SM</div>
                 <div class="testimonial-stars">★★★★★</div>
                 <p class="testimonial-text"
                     data-en='"Carlos captured our engagement perfectly! He made us feel so comfortable and the photos turned out absolutely stunning. We&apos;ll treasure these forever."'
@@ -429,6 +503,7 @@
             </div>
 
             <div class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">ER</div>
                 <div class="testimonial-stars">★★★★★</div>
                 <p class="testimonial-text"
                     data-en='"Amazing experience for my senior portraits! Carlos knew all the best spots and lighting. My family loves the photos and I got so many compliments!"'
@@ -442,6 +517,7 @@
             </div>
 
             <div class="testimonial-card">
+                <div class="testimonial-avatar" aria-hidden="true">DF</div>
                 <div class="testimonial-stars">★★★★★</div>
                 <p class="testimonial-text"
                     data-en='"Carlos is an incredibly talented photographer and a genuinely nice person. He was professional but playful in a way that made us comfortable and confident resulting in amazing photographs. Lighting and editing can be difficult with our diversity but he has done an outstanding job the few times he has taken our family portraits. Carlos captured our family&apos;s candid moments and I will cherish them forever."'
@@ -740,11 +816,13 @@
                     <div class="form-group">
                         <label for="name" data-en="Full Name *" data-es="Nombre Completo *">Full Name *</label>
                         <input type="text" id="name" name="name" required>
+                        <span class="field-error" id="name-error" role="alert"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="email" data-en="Email *" data-es="Correo Electrónico *">Email *</label>
                         <input type="email" id="email" name="email" required>
+                        <span class="field-error" id="email-error" role="alert"></span>
                     </div>
 
                     <div class="form-group">
@@ -758,8 +836,11 @@
                             <option value="" data-en="Select a session type" data-es="Selecciona un tipo de sesión">Select a session type</option>
                             <option value="portrait" data-en="Portrait Session" data-es="Sesión de Retrato">Portrait Session</option>
                             <option value="candid" data-en="Candid Session" data-es="Sesión Espontánea">Candid Session</option>
+                            <option value="family" data-en="Family Session" data-es="Sesión Familiar">Family Session</option>
+                            <option value="commercial" data-en="Commercial / Business" data-es="Comercial / Negocio">Commercial / Business</option>
                             <option value="both" data-en="Both Portrait &amp; Candid" data-es="Retrato y Espontánea">Both Portrait & Candid</option>
                         </select>
+                        <span class="field-error" id="session-type-error" role="alert"></span>
                     </div>
 
                     <div class="form-group">

@@ -179,7 +179,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryDescription = document.getElementById('gallery-description');
     const filterDescriptions = {
-        commercial: 'Commercial photography — a plant technician maintaining and installing interior plants at dealerships and businesses across Tulsa.'
+        commercial: 'Commercial photography — a plant technician maintaining and installing interior plants at dealerships and businesses across Tulsa.',
+        family: 'Family portrait sessions — capturing genuine connections across generations, from couples to full families.'
     };
 
     let filterTimeout = null;
@@ -342,6 +343,44 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
+    // --- Booking Form Inline Validation ---
+    const validationRules = {
+        'name': {
+            test: v => v.trim().length >= 2,
+            msg: { en: 'Please enter your full name.', es: 'Por favor ingresa tu nombre completo.' }
+        },
+        'email': {
+            test: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+            msg: { en: 'Please enter a valid email address.', es: 'Por favor ingresa un correo electrónico válido.' }
+        },
+        'session-type': {
+            test: v => v !== '',
+            msg: { en: 'Please select a session type.', es: 'Por favor selecciona un tipo de sesión.' }
+        }
+    };
+
+    Object.entries(validationRules).forEach(([id, rule]) => {
+        const field = document.getElementById(id);
+        const errorEl = document.getElementById(`${id}-error`);
+        if (!field || !errorEl) return;
+
+        function validateField() {
+            const lang = localStorage.getItem('language') || 'en';
+            if (!rule.test(field.value)) {
+                field.classList.add('is-invalid');
+                errorEl.textContent = rule.msg[lang] || rule.msg.en;
+                return false;
+            }
+            field.classList.remove('is-invalid');
+            errorEl.textContent = '';
+            return true;
+        }
+
+        field.addEventListener('blur', validateField);
+        field.addEventListener('input', () => { if (field.classList.contains('is-invalid')) validateField(); });
+        field.addEventListener('change', () => { if (field.classList.contains('is-invalid')) validateField(); });
+    });
 
     // --- Language Switcher ---
     const langEN = document.getElementById('lang-en');
