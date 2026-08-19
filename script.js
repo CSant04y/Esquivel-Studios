@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryDescription = document.getElementById('gallery-description');
     const filterDescriptions = {
-        commercial: 'Commercial photography — a plant technician maintaining and installing interior plants at dealerships and businesses across Tulsa.',
+        commercial: 'Commercial photography — interior plant installations across Tulsa businesses, and masonry restoration work including repurposing original brick from century-old homes.',
         family: 'Family portrait sessions — capturing genuine connections across generations, from couples to full families.'
     };
 
