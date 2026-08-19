@@ -2348,6 +2348,14 @@ footer {
 	}
 }
 
+/* On small phones hide lightbox arrows — swipe handles navigation */
+@media (max-width: 480px) {
+	.lightbox-prev,
+	.lightbox-next {
+		display: none !important;
+	}
+}
+
 /* Book a Session — CTA pill in desktop nav */
 @media (min-width: 769px) {
 	nav a[href="#booking"] {

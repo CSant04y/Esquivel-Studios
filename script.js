@@ -210,6 +210,30 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // --- Lightbox Touch Swipe ---
+    if (lightbox) {
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        lightbox.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].clientX;
+            touchStartY = e.changedTouches[0].clientY;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            const dy = e.changedTouches[0].clientY - touchStartY;
+            // Only trigger if horizontal swipe dominates and exceeds threshold
+            if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+            const visibleItems = getVisibleItems();
+            if (dx < 0) {
+                navigateTo(visibleItems[(currentIndex + 1) % visibleItems.length]);
+            } else {
+                navigateTo(visibleItems[(currentIndex - 1 + visibleItems.length) % visibleItems.length]);
+            }
+        }, { passive: true });
+    }
+
     // --- Portfolio Filters ---
     const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryDescription = document.getElementById('gallery-description');
